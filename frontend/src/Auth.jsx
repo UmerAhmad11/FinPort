@@ -24,21 +24,42 @@ export default function Auth() {
     resetForm();
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Basic validation
     if (!username || !password || (mode === 'signup' && (!name || !email))) {
       setMessage('⚠️ Please fill in all fields');
       return;
     }
 
-    // Simulated success message
-    setMessage(`${mode === 'signup' ? 'Signed up' : 'Logged in'} as ${username}`);
+    const endpoint = mode === 'signup' ? '/api/signup' : '/api/login';
 
-    // Navigate to /trade after 1 second
-    setTimeout(() => {
-      navigate('/trade');
-    }, 1000);
+    try {
+      const res = await fetch(`http://127.0.0.1:8000${endpoint}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username,
+          password
+        })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setMessage(`❌ ${data.detail || 'Something went wrong'}`);
+        return;
+      }
+
+      // Success: store session and redirect
+      localStorage.setItem('loggedInUser', username);
+      setMessage(data.message);
+      setTimeout(() => navigate('/trade'), 1000);
+    } catch (err) {
+      console.error(err);
+      setMessage('❌ Server error, please try again');
+    }
   };
 
   return (

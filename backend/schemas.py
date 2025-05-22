@@ -11,4 +11,12 @@ class TradeSell(BaseModel):
     user_id: int
     stock_symbol: str
     quantity: int
+
+class SignupRequest(BaseModel):
+    username: str
+    password: str
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
     

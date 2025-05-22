@@ -106,8 +106,15 @@ function Trading() {
         )}
 
         <button type="submit">{mode === 'buy' ? 'Buy' : 'Sell'}</button>
-        <button type="button" onClick={() => navigate('/')} className="back-trade-button">
-          Back
+        <button
+          type="button"
+          className="back-trade-button"
+          onClick={() => {
+            localStorage.removeItem('loggedInUser'); // ✅ Log out
+            navigate('/'); // ✅ Redirect to login
+          }}
+        >
+          Log Out
         </button>
 
       </form>
