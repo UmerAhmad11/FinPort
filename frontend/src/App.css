@@ -18,6 +18,11 @@
   color: #ffdede;
 }
 
+.App.auth {
+  background-color: #1e1e1e;
+  color: white;
+}
+
 h2 {
   text-align: center;
   margin-bottom: 1.5rem;
@@ -45,6 +50,13 @@ h2 {
 
 .toggle-container button.active {
   background-color: #4caf50;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Hover style */
+.toggle-container button:hover {
+  background-color: #2a642c;
   color: white;
   transform: scale(1.05);
 }
@@ -82,6 +94,23 @@ button[type='submit'] {
 button[type='submit']:hover {
   background-color: #005fa3;
 }
+
+.back-trade-button {
+  margin-top: 0.5rem;
+  padding: 0.7rem;
+  background-color: #a03d3d; /* Slightly different than submit */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-trade-button:hover {
+  background-color: #9b1e1e;
+}
+
 
 .response {
   margin-top: 1.2rem;
