@@ -10,6 +10,8 @@ function Trading() {
   const [traderId, setTraderId] = useState(''); // Only for sell
   const [response, setResponse] = useState('');
   const navigate = useNavigate();
+  const loggedInUser = localStorage.getItem('loggedInUser');
+
 
 
   // Utility function to clear form
@@ -63,6 +65,9 @@ function Trading() {
 
   return (
     <div className={`App ${mode}`}>
+      {loggedInUser && (
+        <h1 className="welcome-message">Welcome, {loggedInUser} 👋</h1>
+      )}
       <h2>{mode === 'buy' ? 'Buy Stock' : 'Sell Stock'}</h2>
 
       <div className="toggle-container">

@@ -23,6 +23,13 @@
   color: white;
 }
 
+.welcome-message {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-family: "Segoe Script", "Lucida Handwriting", cursive;
+}
 h2 {
   text-align: center;
   margin-bottom: 1.5rem;

@@ -34,26 +34,36 @@ export default function Auth() {
     }
 
     const endpoint = mode === 'signup' ? '/api/signup' : '/api/login';
+    const payload =
+      mode === 'signup'
+        ? { username, password, fullname: name } // match backend model
+        : { username, password };
 
     try {
       const res = await fetch(`http://127.0.0.1:8000${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username,
-          password
-        })
+        body: JSON.stringify(payload),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        setMessage(`❌ ${data.detail || 'Something went wrong'}`);
+        const errorMsg =
+          typeof data.detail === 'string'
+            ? data.detail
+            : JSON.stringify(data.detail || 'Something went wrong');
+
+        setMessage(`❌ ${errorMsg}`);
         return;
       }
 
-      // Success: store session and redirect
+      // ✅ Save session info
       localStorage.setItem('loggedInUser', username);
+      if (mode === 'signup') {
+        localStorage.setItem('fullName', name);
+      }
+
       setMessage(data.message);
       setTimeout(() => navigate('/trade'), 1000);
     } catch (err) {
