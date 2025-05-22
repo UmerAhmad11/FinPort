@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from schemas import TradeRequest
 
 router = APIRouter()
 
@@ -8,8 +9,8 @@ async def get_trade():
 
 @router.post("/buy")
 
-async def buy():
-    return {"message": "Buy endpoint is live!"}
+async def buy(trade: TradeRequest):
+    return {"message": "Buying {trade.quantity} shares of {trade.symbol} for user {trade.user_id}"}
 
 @router.post("/sell")
 
