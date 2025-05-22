@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from schemas import TradeRequest  # Pydantic model that defines the request format
+from schemas import TradeRequest, TradeSell  # Pydantic model that defines the request format
 
 # Create a router for trading-related endpoints
 router = APIRouter()
@@ -18,7 +18,7 @@ async def buy(trade: TradeRequest):  # trade will automatically be parsed from J
 
 # POST endpoint to simulate selling a stock
 @router.post("/sell")
-async def sell(trade: TradeRequest):
+async def sell(trade: TradeSell):
     return {
-        "message": f"Selling {trade.quantity} shares of {trade.stock_symbol} for user {trade.user_id}"
+        "message": f"User {trade.user_id} is selling {trade.quantity} shares of {trade.stock_symbol} to User {trade.trader_id}"
     }

@@ -1,56 +1,98 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 
 function App() {
+  const [mode, setMode] = useState('buy'); // 'buy' or 'sell'
   const [userId, setUserId] = useState('');
   const [stockSymbol, setStockSymbol] = useState('');
   const [quantity, setQuantity] = useState('');
+  const [traderId, setTraderId] = useState(''); // Only for sell
   const [response, setResponse] = useState('');
 
-
-  // Function called when the form is submitted
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default HTML form behavior (reload)
+    e.preventDefault();
 
-        // Build a trade request object from input fields
-    const tradeData = {
-      user_id: parseInt(userId),
-      stock_symbol: stockSymbol,
-      quantity: parseInt(quantity)
-    };
+    // Choose endpoint and payload
+    const url = `http://127.0.0.1:8000/api/${mode}`;
+    const payload =
+      mode === 'buy'
+        ? {
+            user_id: parseInt(userId),
+            stock_symbol: stockSymbol,
+            quantity: parseInt(quantity),
+          }
+        : {
+            user_id: parseInt(userId),
+            stock_symbol: stockSymbol,
+            quantity: parseInt(quantity),
+            trader_id: parseInt(traderId),
+          };
 
     try {
-      // Make a POST request to the FastAPI backend
-      const res = await fetch('http://127.0.0.1:8000/api/buy', {
+      const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(tradeData)  // Convert JS object to JSON
+        body: JSON.stringify(payload),
       });
 
-      // Convert the response to JSON and set it in state
       const data = await res.json();
-      setResponse(data.message || 'Trade successful!');
+      setResponse(data.message || 'Trade completed.');
     } catch (err) {
-      // Handle any errors
       console.error(err);
-      setResponse('Error placing trade.');
+      setResponse('❌ Error placing trade.');
     }
   };
 
-
-  // JSX to render the form and display the response
   return (
-    <div className="App">
-      <h2>Buy Stock</h2>
+    <div className={`App ${mode}`}>
+      <h2>{mode === 'buy' ? 'Buy Stock' : 'Sell Stock'}</h2>
+
+      <div className="toggle-container">
+        <button
+          className={mode === 'buy' ? 'active' : ''}
+          onClick={() => setMode('buy')}
+        >
+          Buy
+        </button>
+        <button
+          className={mode === 'sell' ? 'active' : ''}
+          onClick={() => setMode('sell')}
+        >
+          Sell
+        </button>
+      </div>
+
       <form onSubmit={handleSubmit}>
-        <input placeholder="User ID" value={userId} onChange={e => setUserId(e.target.value)} />
-        <input placeholder="Stock Symbol" value={stockSymbol} onChange={e => setStockSymbol(e.target.value)} />
-        <input placeholder="Quantity" value={quantity} onChange={e => setQuantity(e.target.value)} />
-        <button type="submit">Buy</button>
+        <input
+          placeholder="User ID"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
+        />
+        <input
+          placeholder="Stock Symbol"
+          value={stockSymbol}
+          onChange={(e) => setStockSymbol(e.target.value)}
+        />
+        <input
+          placeholder="Quantity"
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+        />
+
+        {mode === 'sell' && (
+          <input
+            placeholder="Trader ID"
+            value={traderId}
+            onChange={(e) => setTraderId(e.target.value)}
+          />
+        )}
+
+        <button type="submit">{mode === 'buy' ? 'Buy' : 'Sell'}</button>
       </form>
-      <p>{response}</p>
+
+      <p className="response">{response}</p>
     </div>
   );
 }
 
-export default App
+export default App;

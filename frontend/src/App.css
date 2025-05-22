@@ -1,49 +1,102 @@
 .App {
-  max-width: 400px;
-  margin: 5rem auto;
+  max-width: 420px;
+  margin: 3rem auto;
   padding: 2rem;
-  background-color: #1a1a1a;
-  color: white;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-  font-family: Arial, sans-serif;
+  border-radius: 16px;
+  font-family: 'Segoe UI', sans-serif;
+  transition: background 0.4s ease, box-shadow 0.3s;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
 }
 
-.App h2 {
-  margin-bottom: 1rem;
+.App.buy {
+  background-color: #162d3d;
+  color: #d0f0ff;
+}
+
+.App.sell {
+  background-color: #3d1616;
+  color: #ffdede;
+}
+
+h2 {
   text-align: center;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-.App form {
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.toggle-container button {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #ccc;
+  color: #333;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.toggle-container button.active {
+  background-color: #4caf50;
+  color: white;
+  transform: scale(1.05);
+}
+
+form {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.8rem;
 }
 
-.App input {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+input {
+  padding: 0.6rem;
+  border-radius: 8px;
   border: none;
   background-color: #2c2c2c;
   color: white;
+  transition: background 0.2s ease;
 }
 
-.App button {
-  padding: 0.5rem;
-  background-color: #4caf50;
+input::placeholder {
+  color: #aaa;
+}
+
+button[type='submit'] {
+  padding: 0.7rem;
+  background-color: #0077cc;
+  border: none;
+  border-radius: 8px;
   color: white;
   font-weight: bold;
-  border: none;
-  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
-.App button:hover {
-  background-color: #45a049;
+button[type='submit']:hover {
+  background-color: #005fa3;
 }
 
-.App p {
-  margin-top: 1rem;
+.response {
+  margin-top: 1.2rem;
   text-align: center;
+  font-style: italic;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
