@@ -9,6 +9,21 @@ function App() {
   const [traderId, setTraderId] = useState(''); // Only for sell
   const [response, setResponse] = useState('');
 
+  // Utility function to clear form
+  const resetForm = () => {
+    setUserId('');
+    setStockSymbol('');
+    setQuantity('');
+    setTraderId('');
+    setResponse('');
+  };
+
+  // Toggle Buy/Sell + reset fields
+  const handleToggle = (selectedMode) => {
+    setMode(selectedMode);
+    resetForm();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,13 +65,13 @@ function App() {
       <div className="toggle-container">
         <button
           className={mode === 'buy' ? 'active' : ''}
-          onClick={() => setMode('buy')}
+          onClick={() => handleToggle('buy')}
         >
           Buy
         </button>
         <button
           className={mode === 'sell' ? 'active' : ''}
-          onClick={() => setMode('sell')}
+          onClick={() => handleToggle('sell')}
         >
           Sell
         </button>
