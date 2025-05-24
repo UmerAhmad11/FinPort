@@ -156,6 +156,24 @@ button[type='submit']:hover {
   background-color: #9b1e1e;
 }
 
+.backto-frontpage-button {
+  margin-top: 0.5rem;
+  margin-left: 50px;
+  padding: 0.7rem;
+  width: 420px;
+  background-color: #0b71e5; /* Slightly different than submit */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: alias;
+  transition: background-color 0.3s ease;
+}
+
+.backto-frontpage-button:hover {
+  background-color: #0a35c2;
+}
+
 
 .goto-trading-button {
   margin-top: 0.5rem;

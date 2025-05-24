@@ -4,7 +4,7 @@ import bcrypt
 import uuid
 from storage import load_users, save_users
 from data.storage_balance import load_balances, save_balances
-from mailer import send_welcome_email
+from services.mailer import send_welcome_email
 
 
 router = APIRouter()

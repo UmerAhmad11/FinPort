@@ -13,7 +13,6 @@ function Trading() {
   const loggedInUser = localStorage.getItem('loggedInUser');
 
 
-
   // Utility function to clear form
   const resetForm = () => {
     setUserId('');
