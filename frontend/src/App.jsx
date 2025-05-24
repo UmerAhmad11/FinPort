@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Auth from './Auth';
 import Trading from './Trading';
+import FrontPage from './FrontPage';
 import ProtectedRoute from './ProtectedRoute'; // ✅ import
 import './App.css';
 
@@ -14,6 +15,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Trading />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/frontpage"
+          element={
+            <ProtectedRoute>
+              <FrontPage />
             </ProtectedRoute>
           }
         />

@@ -118,6 +118,38 @@ button[type='submit']:hover {
   background-color: #9b1e1e;
 }
 
+.goto-trading-button {
+  margin-top: 0.5rem;
+  padding: 0.7rem;
+  background-color: #0b71e5; /* Slightly different than submit */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: alias; /*should use pointer instead but welp*/
+  transition: background-color 0.3s ease;
+}
+
+.goto-trading-button:hover {
+  background-color: #0a35c2;
+}
+
+.goto-frontpage-button {
+  margin-top: 0.5rem;
+  padding: 0.7rem;
+  background-color: #ed8c31; /* Slightly different than submit */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.goto-frontpage-button:hover {
+  background-color: #c6720a;
+}
+
 
 .response {
   margin-top: 1.2rem;

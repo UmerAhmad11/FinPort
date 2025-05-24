@@ -113,6 +113,15 @@ function Trading() {
         <button type="submit">{mode === 'buy' ? 'Buy' : 'Sell'}</button>
         <button
           type="button"
+          className="goto-frontpage-button"
+          onClick={() => {
+            navigate('/frontpage'); // ✅ Redirect to FrontPage
+          }}
+        >
+          Go to FrontPage
+        </button>
+        <button
+          type="button"
           className="back-trade-button"
           onClick={() => {
             localStorage.removeItem('loggedInUser'); // ✅ Log out

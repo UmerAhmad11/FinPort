@@ -65,7 +65,7 @@ export default function Auth() {
       }
 
       setMessage(data.message);
-      setTimeout(() => navigate('/trade'), 1000);
+      setTimeout(() => navigate('/frontpage'), 1000);
     } catch (err) {
       console.error(err);
       setMessage('❌ Server error, please try again');
