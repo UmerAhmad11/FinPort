@@ -60,6 +60,9 @@ export default function Auth() {
 
       // ✅ Save session info
       localStorage.setItem('loggedInUser', username);
+      if (data.user_id) {
+        localStorage.setItem('userId', data.user_id); // 👈 Add this
+      }
       if (mode === 'signup') {
         localStorage.setItem('fullName', name);
       }

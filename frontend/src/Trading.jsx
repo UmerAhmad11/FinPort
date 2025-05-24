@@ -4,7 +4,7 @@ import './App.css';
 
 function Trading() {
   const [mode, setMode] = useState('buy'); // 'buy' or 'sell'
-  const [userId, setUserId] = useState('');
+  const [userId, setUserId] = useState(localStorage.getItem('userId') || '');
   const [stockSymbol, setStockSymbol] = useState('');
   const [quantity, setQuantity] = useState('');
   const [traderId, setTraderId] = useState(''); // Only for sell
@@ -89,7 +89,7 @@ function Trading() {
         <input
           placeholder="User ID"
           value={userId}
-          onChange={(e) => setUserId(e.target.value)}
+          readOnly
         />
         <input
           placeholder="Stock Symbol"
