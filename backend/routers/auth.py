@@ -1,7 +1,10 @@
 from fastapi import APIRouter, HTTPException
 from schemas import SignupRequest, LoginRequest
 import bcrypt
+import uuid
 from storage import load_users, save_users
+from mailer import send_welcome_email
+
 
 router = APIRouter()
 
@@ -16,13 +19,20 @@ def signup(data: SignupRequest):
         raise HTTPException(status_code=400, detail="Username already exists")
 
     hashed_pw = bcrypt.hashpw(data.password.encode(), bcrypt.gensalt()).decode()
+    user_id = str(uuid.uuid4())
     users[data.username] = {
+        "id" : user_id,
+        "email" : data.email,
         "password": hashed_pw,
         "name": data.fullname
     }
-
+    send_welcome_email(data.email, data.fullname, user_id)
     save_users(users)
-    return {"message": "User registered successfully"}
+
+    return {
+        "message": "User registered successfully",
+        "user_id": user_id
+        }
 
 @router.post("/login")
 def login(data: LoginRequest):

@@ -13,7 +13,7 @@ function FrontPage() {
     return(
         <div className={`App ${mode}`}>
             {loggedInUser && (
-                <h1 className="welcome-message">Welcome, {loggedInUser} 👋</h1>
+                <h1 className="welcome-message">Welcome to FinPort, {loggedInUser} 👋</h1>
             )}
 
             <div className="goto-trading">
@@ -24,6 +24,17 @@ function FrontPage() {
                 >
                     Go to Trading
                 </button>
+                <button
+                    type="button"
+                    className="front-to-login-button"
+                    onClick={() => {
+                        localStorage.removeItem('loggedInUser'); // ✅ Log out
+                        navigate('/'); // ✅ Redirect to login
+                    }}
+                >
+                    Log Out
+                </button>
+
             </div>
         
         

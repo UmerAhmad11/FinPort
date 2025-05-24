@@ -23,6 +23,16 @@
   color: white;
 }
 
+.App.frontpage{
+  max-width: 1500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 16px;
+  font-family: 'Segoe UI', sans-serif;
+  transition: background 0.4s ease, box-shadow 0.3s;
+  box-shadow: 0 0 20px rgba(180, 62, 62, 0.35);
+}
+
 .welcome-message {
   text-align: center;
   font-size: 1.6rem;
@@ -118,9 +128,29 @@ button[type='submit']:hover {
   background-color: #9b1e1e;
 }
 
+.front-to-login-button {
+  margin-top: 0.5rem;
+  margin-left: 50px;
+  padding: 0.7rem;
+  width: 680px;
+  background-color: #a03d3d; /* Slightly different than submit */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.front-to-login-button:hover {
+  background-color: #9b1e1e;
+}
+
+
 .goto-trading-button {
   margin-top: 0.5rem;
   padding: 0.7rem;
+  width: 680px;
   background-color: #0b71e5; /* Slightly different than submit */
   border: none;
   border-radius: 8px;

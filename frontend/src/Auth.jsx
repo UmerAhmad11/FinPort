@@ -36,7 +36,7 @@ export default function Auth() {
     const endpoint = mode === 'signup' ? '/api/signup' : '/api/login';
     const payload =
       mode === 'signup'
-        ? { username, password, fullname: name } // match backend model
+        ? { username, password, fullname: name, email} // match backend model
         : { username, password };
 
     try {
