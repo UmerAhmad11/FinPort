@@ -21,5 +21,9 @@ class SignupRequest(BaseModel):
 class LoginRequest(BaseModel):
     username: str
     password: str
+
+class DepositRequest(BaseModel):
+    user_id: str
+    amount: float
     
     

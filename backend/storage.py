@@ -12,3 +12,11 @@ def load_users():
 def save_users(users):
     with open(USER_FILE, "w") as f:
         json.dump(users, f)
+
+# Check if user_id is valid by reading users.json
+def is_valid_user(user_id: str):
+    if not os.path.exists(USER_FILE):
+        return False
+    with open(USER_FILE, "r") as f:
+        users = json.load(f)
+    return any(info["id"] == user_id for info in users.values())

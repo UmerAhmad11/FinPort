@@ -1,2 +1,7 @@
 backend/users.json
 backend/.env
+backend/data/balances.json
+.gitignore
+.gitignore
+backend/data/portfolio.json
+backend/data/trades.json

@@ -3,6 +3,7 @@ import Auth from './Auth';
 import Trading from './Trading';
 import FrontPage from './FrontPage';
 import ProtectedRoute from './ProtectedRoute'; // ✅ import
+import Deposit from './Deposit';
 import './App.css';
 
 function App() {
@@ -23,6 +24,14 @@ function App() {
           element={
             <ProtectedRoute>
               <FrontPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/deposit"
+          element={
+            <ProtectedRoute>
+              <Deposit />
             </ProtectedRoute>
           }
         />

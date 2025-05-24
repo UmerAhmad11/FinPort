@@ -6,3 +6,7 @@ router = APIRouter()
 
 async def get_front_page():
     return {"message" : "FrontPage is Live!"}
+
+
+
+

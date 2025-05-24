@@ -8,6 +8,7 @@ function FrontPage() {
     const [mode, setMode] = useState('frontpage');
     const navigate = useNavigate();
     const loggedInUser = localStorage.getItem('loggedInUser');
+    
 
 
     return(
@@ -33,6 +34,13 @@ function FrontPage() {
                     }}
                 >
                     Log Out
+                </button>
+                <button
+                    type="button"
+                    className="goto-deposit-button"
+                    onClick={() => navigate('/deposit')}
+                >
+                    Go to Deposit
                 </button>
 
             </div>
