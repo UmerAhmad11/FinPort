@@ -7,10 +7,22 @@ function Deposit() {
     const [mode] = useState('deposit');
     const [userId] = useState(localStorage.getItem('userId') || '');
     const [balance, setBalance] = useState(null);
+    const [depositAmount, setDepositAmount] = useState('');
     const [error, setError] = useState('');
+    const [response, setResponse] = useState('');
     const navigate = useNavigate();
     const loggedInUser = localStorage.getItem('loggedInUser');
-  
+
+    // Utility function to clear form after pressing submit
+    const resetForm = () => {
+        setUserId('');
+        setStockSymbol('');
+        setQuantity('');
+        setTraderId('');
+        setResponse('');
+    };
+
+    //To get balance from balances.json
     useEffect(() => {
       if (!userId) {
         setError('❌ No user ID found in localStorage');
@@ -31,6 +43,51 @@ function Deposit() {
           setError('❌ Server error fetching balance');
         });
     }, [userId]);
+
+    useEffect(() => {
+        if (response) {
+          const timer = setTimeout(() => setResponse(''), 4000);
+          return () => clearTimeout(timer);
+        }
+      }, [response]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+      
+        const url = `http://127.0.0.1:8000/api/deposit`;
+      
+        if (!depositAmount || isNaN(depositAmount) || Number(depositAmount) <= 0) {
+          setError('⚠️ Please enter a valid deposit amount');
+          return;
+        }
+      
+        try {
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              user_id: userId,
+              amount: parseFloat(depositAmount),
+            }),
+          });
+      
+          const data = await res.json();
+      
+          if (!res.ok) {
+            setError(data.detail || '❌ Deposit failed');
+            return;
+          }
+      
+          setBalance(data.new_balance);
+          setResponse(data.message); // ✅ show message
+          setDepositAmount('');
+          setError('');
+        } catch (err) {
+          console.error(err);
+          setError('❌ Server error during deposit');
+        }
+      };
+      
 
 
     return (
@@ -57,7 +114,7 @@ function Deposit() {
             </p>
           )}
       
-          <div className="goto-trading">
+        <div className="goto-trading">
             <button
               type="button"
               className="goto-trading-button"
@@ -82,8 +139,29 @@ function Deposit() {
             >
               Go to Frontpage
             </button>
-           
-          </div>
+        </div>
+
+        <div className="deposit-form">
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="number"
+                    placeholder="Enter amount to deposit"
+                    value={depositAmount}
+                    onChange={(e) => setDepositAmount(e.target.value)}
+                />
+                <button 
+                    type="submit"
+                    className="deposit-button"
+                >   Deposit
+                </button>
+            </form>
+        </div>
+        {response && (
+            <p className="response-deposit">
+                {response}
+            </p>
+        )}
+
         </div>
       )
 }
