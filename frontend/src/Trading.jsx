@@ -15,7 +15,6 @@ function Trading() {
 
   // Utility function to clear form
   const resetForm = () => {
-    setUserId('');
     setStockSymbol('');
     setQuantity('');
     setTraderId('');
