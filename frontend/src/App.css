@@ -234,6 +234,24 @@ button[type='submit']:hover {
   background-color: #0a35c2;
 }
 
+.goto-purchases-button {
+  margin-top: 0.5rem;
+  padding: 0.7rem;
+  margin-left: 30px;
+  width: 420px;
+  background-color: #10c728; /* Slightly different than submit */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: alias; /*should use pointer instead but welp*/
+  transition: background-color 0.3s ease;
+}
+
+.goto-purchases-button:hover {
+  background-color: #0c632c;
+}
+
 .goto-frontpage-button {
   margin-top: 0.5rem;
   padding: 0.7rem;

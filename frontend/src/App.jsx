@@ -37,7 +37,7 @@ function App() {
           }
         />
         <Route
-          path="/purchase_tracker"
+          path="/purchases"
           element={
             <ProtectedRoute>
               <PurchaseTracker />

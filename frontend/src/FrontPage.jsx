@@ -44,6 +44,16 @@ function FrontPage() {
                 </button>
 
             </div>
+
+            <div classname="goto-purchases">
+                <button
+                    type="button"
+                    className="goto-purchases-button"
+                    onClick={() => navigate('/purchases')}
+                >
+                    Track Your Purchases
+                </button>
+            </div>
         
         
         </div>

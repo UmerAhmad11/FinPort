@@ -4,6 +4,8 @@ import './App.css';
 
 function PurchaseTracker() {
 
+    const [mode] = useState('purchases');
+
 }
 
 export default PurchaseTracker;
