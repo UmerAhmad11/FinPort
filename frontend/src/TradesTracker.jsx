@@ -19,7 +19,7 @@ function TradesTracker() {
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data.trades)) {
-          setTrades(data.trades); // ✅ Correct field name
+          setTrades(data.trades);
         } else {
           setTrades([]);
         }
@@ -57,8 +57,12 @@ function TradesTracker() {
           <ul style={{ listStyle: 'none', paddingLeft: 0, textAlign: 'center' }}>
             {trades.map((item, index) => (
               <li key={index} style={{ marginBottom: '0.5rem' }}>
-                {item.type === 'buy' ? '🟢 Bought' : '🔴 Sold'} {item.quantity} shares of <strong>{item.stock_symbol.toUpperCase()}</strong>
-                {item.trader_id && item.type === 'sell' ? ` to User ${item.trader_id}` : ''}
+                {item.type === 'buy' && `🟢 Bought ${item.quantity} shares of `}
+                {item.type === 'sell' && `🔴 Sold ${item.quantity} shares of `}
+                {item.type === 'received' && `🟡 Received ${item.quantity} shares of `}
+                <strong>{item.stock_symbol.toUpperCase()}</strong>
+                {item.type === 'sell' && item.to && ` to User ${item.to}`}
+                {item.type === 'received' && item.from && ` from User ${item.from}`}
               </li>
             ))}
           </ul>

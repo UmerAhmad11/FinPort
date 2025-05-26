@@ -40,24 +40,28 @@ async def buy(trade: TradeRequest):
 @router.post("/sell")
 async def sell(trade: TradeSell):
     user_id = str(trade.user_id)
-    trader_id = str(trade.trader_id)
+    trader_id = str(trade.trader_id)  # the buyer
     stock = trade.stock_symbol.upper()
 
     portfolio = load_portfolio()
     user_portfolio = portfolio.get(user_id, {})
+    buyer_portfolio = portfolio.get(trader_id, {})
 
-    # Check if user has enough stock to sell
+    # Check if seller has enough stock
     if stock not in user_portfolio or user_portfolio[stock] < trade.quantity:
         raise HTTPException(status_code=400, detail="Not enough stock to sell")
 
-    # Subtract stock
+    # Subtract stock from seller
     user_portfolio[stock] -= trade.quantity
     if user_portfolio[stock] <= 0:
         del user_portfolio[stock]
-
     save_purchases(user_id, user_portfolio)
 
-    # ✅ Record trade history
+    # Add stock to buyer
+    buyer_portfolio[stock] = buyer_portfolio.get(stock, 0) + trade.quantity
+    save_purchases(trader_id, buyer_portfolio)
+
+    # ✅ Record trade history for seller
     record_trade(user_id, {
         "type": "sell",
         "stock_symbol": stock,
@@ -65,6 +69,15 @@ async def sell(trade: TradeSell):
         "to": trader_id
     })
 
+    # ✅ Record trade history for buyer
+    record_trade(trader_id, {
+        "type": "received",
+        "stock_symbol": stock,
+        "quantity": trade.quantity,
+        "from": user_id
+    })
+
     return {
         "message": f"✅ Sold {trade.quantity} shares of {stock} from user {user_id} to user {trader_id}"
     }
+
