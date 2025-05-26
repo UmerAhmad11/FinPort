@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import trading, auth, frontpage, deposit, purchase_tracker  # import your trading endpoints
+from routers import trading, auth, frontpage, deposit, trades_tracker  # import your trading endpoints
 
 # Create the FastAPI app instance
 app = FastAPI()
@@ -19,7 +19,7 @@ app.include_router(trading.router, prefix="/api", tags=["Trading"])
 app.include_router(auth.router, prefix="/main", tags=["Auth"])
 app.include_router(frontpage.router, prefix="/main", tags=["Frontpage"])
 app.include_router(deposit.router, prefix="/api", tags=["Deposit"])
-app.include_router(purchase_tracker.router, prefix="/api", tags=["Purchase Tracker"])
+app.include_router(trades_tracker.router, prefix="/api", tags=["Trades Tracker"])
 
 
 # Basic root endpoint for testing

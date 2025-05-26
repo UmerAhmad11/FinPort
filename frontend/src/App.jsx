@@ -4,7 +4,7 @@ import Trading from './Trading';
 import FrontPage from './FrontPage';
 import ProtectedRoute from './ProtectedRoute'; // ✅ import
 import Deposit from './Deposit';
-import PurchaseTracker from './PurchaseTracker';
+import TradesTracker from './TradesTracker';
 import './App.css';
 
 function App() {
@@ -37,10 +37,10 @@ function App() {
           }
         />
         <Route
-          path="/purchases"
+          path="/trades"
           element={
             <ProtectedRoute>
-              <PurchaseTracker />
+              <TradesTracker />
             </ProtectedRoute>
           }
         />

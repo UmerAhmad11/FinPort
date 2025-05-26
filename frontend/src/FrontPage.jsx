@@ -45,13 +45,13 @@ function FrontPage() {
 
             </div>
 
-            <div className="goto-purchases">
+            <div className="goto-trades">
                 <button
                     type="button"
-                    className="goto-purchases-button"
-                    onClick={() => navigate('/purchases')}
+                    className="goto-trades-button"
+                    onClick={() => navigate('/trades')}
                 >
-                    Track Your Purchases
+                    Track Your Trades
                 </button>
             </div>
         

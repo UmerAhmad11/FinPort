@@ -1,9 +1,8 @@
-from fastapi import APIRouter
-from schemas import TradeRequest, TradeSell  # Pydantic model that defines the request format
+from fastapi import APIRouter, HTTPException
+from schemas import TradeRequest, TradeSell
 from data.portfolio_data import save_purchases, load_portfolio
+from data.trades import record_trade  # ✅ New import for trade history
 
-
-# Create a router for trading-related endpoints
 router = APIRouter()
 
 # GET test endpoint (e.g., to check if route works)
@@ -26,6 +25,13 @@ async def buy(trade: TradeRequest):
 
     save_purchases(user_id, user_portfolio)
 
+    # ✅ Record trade history
+    record_trade(user_id, {
+        "type": "buy",
+        "stock_symbol": stock,
+        "quantity": trade.quantity
+    })
+
     return {
         "message": f"✅ Bought {trade.quantity} shares of {stock} for user {user_id}"
     }
@@ -33,6 +39,32 @@ async def buy(trade: TradeRequest):
 # POST endpoint to simulate selling a stock
 @router.post("/sell")
 async def sell(trade: TradeSell):
+    user_id = str(trade.user_id)
+    trader_id = str(trade.trader_id)
+    stock = trade.stock_symbol.upper()
+
+    portfolio = load_portfolio()
+    user_portfolio = portfolio.get(user_id, {})
+
+    # Check if user has enough stock to sell
+    if stock not in user_portfolio or user_portfolio[stock] < trade.quantity:
+        raise HTTPException(status_code=400, detail="Not enough stock to sell")
+
+    # Subtract stock
+    user_portfolio[stock] -= trade.quantity
+    if user_portfolio[stock] <= 0:
+        del user_portfolio[stock]
+
+    save_purchases(user_id, user_portfolio)
+
+    # ✅ Record trade history
+    record_trade(user_id, {
+        "type": "sell",
+        "stock_symbol": stock,
+        "quantity": trade.quantity,
+        "to": trader_id
+    })
+
     return {
-        "message": f"User {trade.user_id} is selling {trade.quantity} shares of {trade.stock_symbol} to User {trade.trader_id}"
+        "message": f"✅ Sold {trade.quantity} shares of {stock} from user {user_id} to user {trader_id}"
     }

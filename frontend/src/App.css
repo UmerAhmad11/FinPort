@@ -46,7 +46,7 @@
   box-shadow: 0 0 20px rgba(180, 62, 62, 0.35);
 }
 
-.App.purchases{
+.App.trades{
   max-width: 1500px;
   min-width: 1500px;
   margin: 3rem auto;
@@ -248,7 +248,7 @@ button[type='submit']:hover {
   background-color: #0a35c2;
 }
 
-.goto-purchases-button {
+.goto-trades-button {
   margin-top: 30px;
   padding: 0.7rem;
   margin-left: 30px;
@@ -262,7 +262,7 @@ button[type='submit']:hover {
   transition: background-color 0.3s ease;
 }
 
-.goto-purchases-button:hover {
+.goto-trades-button:hover {
   background-color: #0c632c;
 }
 
@@ -282,7 +282,7 @@ button[type='submit']:hover {
   background-color: #c6720a;
 }
 
-.purchase-to-frontpage-button {
+.trades-to-frontpage-button {
   margin-top: 0.5rem;
   margin-left: 505px;
   padding: 0.7rem;
@@ -296,7 +296,7 @@ button[type='submit']:hover {
   transition: background-color 0.3s ease;
 }
 
-.purchase-to-frontpage-button:hover {
+.trades-to-frontpage-button:hover {
   background-color: #c6720a;
 }
 
@@ -320,7 +320,7 @@ button[type='submit']:hover {
   animation: fadeInOut 4s ease-in-out forwards;
 }
 
-.listof-purchases {
+.listof-trades {
   margin-top: 1rem;
   color: #d0f0ff;
   text-align: center;

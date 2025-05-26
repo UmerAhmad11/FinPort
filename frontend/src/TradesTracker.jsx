@@ -2,44 +2,42 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 
-function PurchaseTracker() {
-  const [mode] = useState('purchases');
+function TradesTracker() {
+  const [mode] = useState('trades');
   const userId = localStorage.getItem('userId') || '';
   const loggedInUser = localStorage.getItem('loggedInUser');
   const navigate = useNavigate();
 
-  const [purchases, setPurchases] = useState([]);
+  const [trades, setTrades] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!userId) return;
-  
-    fetch(`http://127.0.0.1:8000/api/purchases/${userId}`)
+
+    fetch(`http://127.0.0.1:8000/api/trades/${userId}`)
       .then(res => res.json())
       .then(data => {
-        if (Array.isArray(data.purchases)) {
-          setPurchases(data.purchases);
+        if (Array.isArray(data.trades)) {
+          setTrades(data.trades); // ✅ Correct field name
         } else {
-          setPurchases([]);
+          setTrades([]);
         }
-  
-        setLoading(false); // ✅ Set loading to false after success
+
+        setLoading(false);
       })
       .catch(err => {
         console.error(err);
-        setPurchases([]);
-        setError('❌ Failed to load purchases'); // Optional error message
-        setLoading(false); // ✅ Set loading to false after failure
+        setTrades([]);
+        setError('❌ Failed to load trades');
+        setLoading(false);
       });
   }, [userId]);
-  
-  
 
   return (
     <div className={`App ${mode}`}>
       {loggedInUser && (
-        <h1 className="welcome-message">Purchases of {loggedInUser}</h1>
+        <h1 className="welcome-message">Trades of {loggedInUser}</h1>
       )}
 
       {userId && (
@@ -48,18 +46,19 @@ function PurchaseTracker() {
         </p>
       )}
 
-      <div className="listof-purchases">
+      <div className="listof-trades">
         {loading ? (
-          <p className="response">⏳ Loading purchases...</p>
+          <p className="response">⏳ Loading trades...</p>
         ) : error ? (
           <p className="response" style={{ color: 'salmon' }}>{error}</p>
-        ) : purchases.length === 0 ? (
-          <p className="response">No purchases recorded yet.</p>
+        ) : trades.length === 0 ? (
+          <p className="response">No trades recorded yet.</p>
         ) : (
           <ul style={{ listStyle: 'none', paddingLeft: 0, textAlign: 'center' }}>
-            {purchases.map((item, index) => (
+            {trades.map((item, index) => (
               <li key={index} style={{ marginBottom: '0.5rem' }}>
-                📈 {item.stock_symbol.toUpperCase()} — {item.quantity} shares
+                {item.type === 'buy' ? '🟢 Bought' : '🔴 Sold'} {item.quantity} shares of <strong>{item.stock_symbol.toUpperCase()}</strong>
+                {item.trader_id && item.type === 'sell' ? ` to User ${item.trader_id}` : ''}
               </li>
             ))}
           </ul>
@@ -69,7 +68,7 @@ function PurchaseTracker() {
       <div className="buttons">
         <button
           type="button"
-          className="purchase-to-frontpage-button"
+          className="trades-to-frontpage-button"
           onClick={() => navigate('/frontpage')}
         >
           Back to Home
@@ -79,4 +78,4 @@ function PurchaseTracker() {
   );
 }
 
-export default PurchaseTracker;
+export default TradesTracker;
