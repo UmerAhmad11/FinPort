@@ -9,7 +9,14 @@ def load_portfolio():
     with open(PORTFOLIO_FILE, "r") as f:
         return json.load(f)
 
-def save_purchases(purchases):
+def save_purchases(user_id, purchases):
+    user_id = str(user_id)  # ensure consistent key format
+    data = load_portfolio()
+
+    # Update only this user's portfolio
+    data[user_id] = purchases
+
+    # Save entire updated data back to file
     with open(PORTFOLIO_FILE, "w") as f:
-        json.dump(purchases, f, indent=2)
+        json.dump(data, f, indent=2)
 

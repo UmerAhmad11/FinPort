@@ -45,7 +45,7 @@ function FrontPage() {
 
             </div>
 
-            <div classname="goto-purchases">
+            <div className="goto-purchases">
                 <button
                     type="button"
                     className="goto-purchases-button"

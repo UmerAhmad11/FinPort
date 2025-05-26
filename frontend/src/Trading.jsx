@@ -35,15 +35,15 @@ function Trading() {
     const payload =
       mode === 'buy'
         ? {
-            user_id: parseInt(userId),
+            user_id: userId,
             stock_symbol: stockSymbol,
             quantity: parseInt(quantity),
           }
         : {
-            user_id: parseInt(userId),
+            user_id: userId,
             stock_symbol: stockSymbol,
             quantity: parseInt(quantity),
-            trader_id: parseInt(traderId),
+            trader_id: traderId,
           };
 
     try {
@@ -116,7 +116,7 @@ function Trading() {
             navigate('/frontpage'); // ✅ Redirect to FrontPage
           }}
         >
-          Go to FrontPage
+          Back to Home
         </button>
         <button
           type="button"

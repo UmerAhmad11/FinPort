@@ -137,7 +137,7 @@ function Deposit() {
               className="backto-frontpage-button"
               onClick={() => navigate('/frontpage')}
             >
-              Go to Frontpage
+              Back to Home
             </button>
         </div>
 
