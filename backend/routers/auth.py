@@ -55,4 +55,10 @@ def login(data: LoginRequest):
     if not bcrypt.checkpw(data.password.encode(), stored_pw):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    return {"message": "Login successful"}
+    # ✅ Extract user_id
+    user_id = users[data.username]["id"]
+
+    return {
+        "message": "Login successful",
+        "user_id": user_id  # ✅ Send it to frontend
+    }
