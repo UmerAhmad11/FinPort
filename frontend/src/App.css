@@ -33,7 +33,7 @@
   font-family: 'Segoe UI', sans-serif;
   transition: background 0.4s ease, box-shadow 0.3s;
   box-shadow: 0 0 20px rgba(180, 62, 62, 0.35);
-  background: radial-gradient(circle at center, #30c9da, #121212);
+  background: radial-gradient(circle at center, #373839, #121212);
   color: white;
 }
 
