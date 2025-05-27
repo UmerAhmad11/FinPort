@@ -300,6 +300,24 @@ button[type='submit']:hover {
   background-color: #c6720a;
 }
 
+.front-to-portfolio-button {
+  margin-top: 0.5rem;
+  margin-left: 50px;
+  padding: 0.7rem;
+  width: 420px;
+  background-color: #7b62e7; /* Slightly different than submit */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: alias;
+  transition: background-color 0.3s ease;
+}
+
+.front-to-portfolio-button:hover {
+  background-color: #63298b;
+}
+
 
 .response {
   margin-top: 1.2rem;

@@ -5,6 +5,7 @@ import FrontPage from './FrontPage';
 import ProtectedRoute from './ProtectedRoute'; // ✅ import
 import Deposit from './Deposit';
 import TradesTracker from './TradesTracker';
+import Portfolio from './Portfolio';
 import './App.css';
 
 function App() {
@@ -41,6 +42,14 @@ function App() {
           element={
             <ProtectedRoute>
               <TradesTracker />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/portfolio"
+          element={
+            <ProtectedRoute>
+              <Portfolio />
             </ProtectedRoute>
           }
         />

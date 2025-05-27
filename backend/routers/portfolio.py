@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from data.portfolio_data import save_purchases, load_portfolio
+from data.portfolio_data import load_portfolio
 from storage import is_valid_user
 
 

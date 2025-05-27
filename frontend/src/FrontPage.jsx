@@ -53,6 +53,14 @@ function FrontPage() {
                 >
                     Track Your Trades
                 </button>
+
+                <button
+                    type="button"
+                    className="front-to-portfolio-button"
+                    onClick={() => navigate('/portfolio')}
+                >
+                    View Portfolio
+                </button>
             </div>
         
         
