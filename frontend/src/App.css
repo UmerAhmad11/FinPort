@@ -57,6 +57,17 @@
   box-shadow: 0 0 20px rgba(180, 62, 62, 0.35);
 }
 
+.App.portfolio{
+  max-width: 1500px;
+  min-width: 1500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 16px;
+  font-family: 'Segoe UI', sans-serif;
+  transition: background 0.4s ease, box-shadow 0.3s;
+  box-shadow: 0 0 20px rgba(180, 62, 62, 0.35);
+}
+
 .welcome-message {
   text-align: center;
   font-size: 1.6rem;
@@ -297,6 +308,24 @@ button[type='submit']:hover {
 }
 
 .trades-to-frontpage-button:hover {
+  background-color: #c6720a;
+}
+
+.portfolio-to-frontpage-button {
+  margin-top: 0.5rem;
+  margin-left: 505px;
+  padding: 0.7rem;
+  width: 420px;
+  background-color: #ed8c31; /* Slightly different than submit */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.portfolio-to-frontpage-button:hover {
   background-color: #c6720a;
 }
 
