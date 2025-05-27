@@ -61,6 +61,14 @@ function FrontPage() {
                 >
                     View Portfolio
                 </button>
+
+                <button
+                    type="button"
+                    className="goto-withdraw-button"
+                    onClick={() => navigate('/withdraw')}
+                >
+                    Go to Withdraw
+                </button>
             </div>
         
         
