@@ -14,7 +14,7 @@ function FrontPage() {
 
     return(
         <div className={`App ${mode}`}>
-            
+            {/*<Navbar/>*/}
             {loggedInUser && (
                 <h1 className="welcome-message">Welcome to FinPort, {loggedInUser} 👋</h1>
             )}
