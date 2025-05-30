@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import './App.css';
+import Navbar from './Navbar';
 
 function FrontPage() {
 
@@ -13,6 +14,7 @@ function FrontPage() {
 
     return(
         <div className={`App ${mode}`}>
+            
             {loggedInUser && (
                 <h1 className="welcome-message">Welcome to FinPort, {loggedInUser} 👋</h1>
             )}
