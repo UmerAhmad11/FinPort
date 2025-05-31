@@ -8,3 +8,4 @@ backend/data/trades.json
 backend-java/api/compose.yaml
 backend-java/compose.yaml
 backend-java/api/application.properties
+backend-java/api/src/main/resources/application.properties
