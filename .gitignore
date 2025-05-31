@@ -6,4 +6,3 @@ backend/data/balances.json
 backend/data/portfolio.json
 backend/data/trades.json
 backend-java/api/compose.yaml
-backend-java/api/compose.yaml
