@@ -7,3 +7,4 @@ backend/data/portfolio.json
 backend/data/trades.json
 backend-java/api/compose.yaml
 backend-java/compose.yaml
+backend-java/api/application.properties
