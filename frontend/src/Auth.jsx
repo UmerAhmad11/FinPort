@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
+import './index.css';
 
 export default function Auth() {
   const [mode, setMode] = useState('login'); // 'login' or 'signup'
@@ -77,6 +78,7 @@ export default function Auth() {
 
   return (
     <div className="App auth">
+
       <h2>{mode === 'signup' ? 'Sign Up' : 'Login'}</h2>
 
       <div className="toggle-container">
@@ -100,12 +102,14 @@ export default function Auth() {
             <input
               placeholder="Full Name"
               value={name}
+              className="input-default"
               onChange={(e) => setName(e.target.value)}
             />
             <input
               type="email"
               placeholder="Email"
               value={email}
+              className="input-default"
               onChange={(e) => setEmail(e.target.value)}
             />
           </>
@@ -113,12 +117,14 @@ export default function Auth() {
         <input
           placeholder="Username"
           value={username}
+          className="input-default"
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
+          className="input-default"
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">{mode === 'signup' ? 'Sign Up' : 'Login'}</button>

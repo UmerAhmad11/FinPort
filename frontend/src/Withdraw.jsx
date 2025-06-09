@@ -139,6 +139,7 @@ function Withdraw() {
                     type="number"
                     placeholder="Enter amount to withdraw"
                     value={withdrawAmount}
+                    className="input-default"
                     onChange={(e) => setWithdrawAmount(e.target.value)}
                 />
                 <button 

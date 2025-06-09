@@ -87,16 +87,19 @@ function Trading() {
         <input
           placeholder="User ID"
           value={userId}
+          className="input-default"
           readOnly
         />
         <input
           placeholder="Stock Symbol"
           value={stockSymbol}
+          className="input-default"
           onChange={(e) => setStockSymbol(e.target.value)}
         />
         <input
           placeholder="Quantity"
           value={quantity}
+          className="input-default"
           onChange={(e) => setQuantity(e.target.value)}
         />
 
@@ -104,6 +107,7 @@ function Trading() {
           <input
             placeholder="Trader ID"
             value={traderId}
+            className="input-default"
             onChange={(e) => setTraderId(e.target.value)}
           />
         )}

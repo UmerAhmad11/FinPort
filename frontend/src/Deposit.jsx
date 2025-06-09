@@ -147,6 +147,7 @@ function Deposit() {
                     type="number"
                     placeholder="Enter amount to deposit"
                     value={depositAmount}
+                    className="input-default"
                     onChange={(e) => setDepositAmount(e.target.value)}
                 />
                 <button 
