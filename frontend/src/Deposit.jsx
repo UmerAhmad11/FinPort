@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import './App.css';
+import './Deposit.css';
 
 function Deposit() {
 
@@ -124,7 +124,7 @@ function Deposit() {
             </button>
             <button
                 type="button"
-                className="front-to-login-button"
+                className="deposit-to-login-button"
                 onClick={() => {
                     localStorage.removeItem('loggedInUser'); // ✅ Log out
                     navigate('/'); // ✅ Redirect to login

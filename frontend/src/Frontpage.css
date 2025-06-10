@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/*=== Front Page ===*/
+
+.App.frontpage{
+    max-width: 1500px;
+    min-width: 1500px;
+    margin: 3rem auto;
+    padding: 2rem;
+    border-radius: 16px;
+    font-family: 'Segoe UI', sans-serif;
+    transition: background 0.4s ease, box-shadow 0.3s;
+    box-shadow: 0 0 20px rgba(180, 62, 62, 0.35);
+    background: radial-gradient(circle at center, #373839, #121212);
+    color: white;
+  }
+
+  .welcome-message {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    font-family: "Georgia", serif;
+  }
+
+  .front-to-login-button {
+    margin-top: 0.5rem;
+    margin-left: 50px;
+    padding: 0.7rem;
+    width: 420px;
+    background-color: #a03d3d; /* Slightly different than submit */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: alias;
+    transition: background-color 0.3s ease;
+  }
+  
+  .front-to-login-button:hover {
+    transform: scale(1.05);
+    background-color: #9b1e1e;
+  }
+
+  .goto-trading-button {
+    margin-top: 0.5rem;
+    padding: 0.7rem;
+    margin-left: 30px;
+    width: 420px;
+    background-color: #0b71e5; /* Slightly different than submit */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: alias; /*should use pointer instead but welp*/
+    transition: background-color 0.3s ease;
+  }
+  
+  .goto-trading-button:hover {
+    transform: scale(1.05);
+    background-color: #0a35c2;
+  }
+
+  .goto-deposit-button {
+    margin-top: 0.5rem;
+    padding: 0.7rem;
+    margin-left: 50px;
+    width: 420px;
+    background-color: #0b71e5; /* Slightly different than submit */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: alias; /*should use pointer instead but welp*/
+    transition: background-color 0.3s ease;
+  }
+  
+  .goto-deposit-button:hover {
+    transform: scale(1.05);
+    background-color: #0a35c2;
+  }
+  
+  .goto-withdraw-button {
+    margin-top: 0.5rem;
+    padding: 0.7rem;
+    margin-left: 50px;
+    width: 420px;
+    background-color: #10c728; /* Slightly different than submit */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: alias; /*should use pointer instead but welp*/
+    transition: background-color 0.3s ease;
+  }
+  
+  .goto-withdraw-button:hover {
+    transform: scale(1.05);
+    background-color: #0c632c;
+  }
+  
+  .goto-trades-button {
+    margin-top: 30px;
+    padding: 0.7rem;
+    margin-left: 30px;
+    width: 420px;
+    background-color: #10c728; /* Slightly different than submit */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: alias; /*should use pointer instead but welp*/
+    transition: background-color 0.3s ease;
+  }
+  
+  .goto-trades-button:hover {
+    transform: scale(1.05);
+    background-color: #0c632c;
+  }
+
+  .front-to-portfolio-button {
+    margin-top: 0.5rem;
+    margin-left: 50px;
+    padding: 0.7rem;
+    width: 420px;
+    background-color: #7b62e7; /* Slightly different than submit */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: alias;
+    transition: background-color 0.3s ease;
+  }
+  
+  .front-to-portfolio-button:hover {
+    transform: scale(1.05);
+    background-color: #63298b;
+  }

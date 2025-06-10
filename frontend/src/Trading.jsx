@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './App.css';
+import './Trading.css';
 
 function Trading() {
   const [mode, setMode] = useState('buy'); // 'buy' or 'sell'
@@ -124,7 +124,7 @@ function Trading() {
         </button>
         <button
           type="button"
-          className="back-trade-button"
+          className="trade-logout-button"
           onClick={() => {
             localStorage.removeItem('loggedInUser'); // ✅ Log out
             navigate('/'); // ✅ Redirect to login

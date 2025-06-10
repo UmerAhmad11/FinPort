@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+/*=== Withdraw Page ===*/
+
+.App.withdraw{
+    max-width: 1500px;
+    min-width: 1500px;
+    margin: 3rem auto;
+    padding: 2rem;
+    border-radius: 16px;
+    font-family: 'Segoe UI', sans-serif;
+    transition: background 0.4s ease, box-shadow 0.3s;
+    background: radial-gradient(circle at center, #155a0c, #121212);
+    box-shadow: 0 0 20px rgba(180, 62, 62, 0.35);
+  }
+
+  .welcome-message {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    font-family: "Georgia", serif;
+  }
+
+
+  .withdraw-form {
+    display: flex;
+    margin-top: 50px;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .withdraw-button {
+    margin-top: 0.5rem;
+    padding: 0.7rem;
+    background-color: #a03d3d; /* Slightly different than submit */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .withdraw-button:hover {
+    transform: scale(1.05);
+    background-color: #9b1e1e;
+  }
+
+  .input-default {
+    @apply w-full px-4 py-2 rounded-2xl border border-gray-600 bg-gray-800 text-white placeholder-gray-400 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
+  
+  input::placeholder {
+    color: #aaa;
+  }
+
+  .backto-frontpage-button {
+    margin-top: 0.5rem;
+    margin-left: 50px;
+    padding: 0.7rem;
+    width: 420px;
+    background-color: #0b71e5; /* Slightly different than submit */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: alias;
+    transition: background-color 0.3s ease;
+  }
+  
+  .backto-frontpage-button:hover {
+    transform: scale(1.05);
+    background-color: #0a35c2;
+  }
+
+  .withdraw-to-login-button {
+    margin-top: 0.5rem;
+    margin-left: 50px;
+    padding: 0.7rem;
+    width: 420px;
+    background-color: #a03d3d; /* Slightly different than submit */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: alias;
+    transition: background-color 0.3s ease;
+  }
+  
+  .withdraw-to-login-button:hover {
+    transform: scale(1.05);
+    background-color: #9b1e1e;
+  }
+
+
+  .goto-trading-button {
+    margin-top: 0.5rem;
+    padding: 0.7rem;
+    margin-left: 30px;
+    width: 420px;
+    background-color: #0b71e5; /* Slightly different than submit */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: alias; /*should use pointer instead but welp*/
+    transition: background-color 0.3s ease;
+  }
+  
+  .goto-trading-button:hover {
+    transform: scale(1.05);
+    background-color: #0a35c2;
+  }
+
+
+  .response-deposit {
+    margin-top: 1.2rem;
+    text-align: center;
+    color: #aaffaa;
+    font-weight: bold;
+    background-color: #1e3b26;
+    padding: 0.8rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(10, 255, 10, 0.2);
+    animation: fadeInOut 4s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* ⏳ 0–20% fade in, stay visible, fade out toward 100% */
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    20% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    80% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+  }
+  

@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/*=== Auth Page ===*/
+
+.App.auth {
+    background: radial-gradient(circle at center, #2a2a2a, #121212);
+    color: white;
+  }
+
+  .toggle-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .toggle-container button.active {
+    background-color: #4caf50;
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  /* Hover style */
+  .toggle-container button:hover {
+    background-color: #2a642c;
+    color: white;
+    transform: scale(1.05);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .input-default {
+    @apply w-full px-4 py-2 rounded-2xl border border-gray-600 bg-gray-800 text-white placeholder-gray-400 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
+  
+  input::placeholder {
+    color: #aaa;
+  }
+
+  button[type='submit'] {
+    padding: 0.7rem;
+    background-color: #0077cc;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type='submit']:hover {
+    transform: scale(1.02);
+    background-color: #005fa3;
+  }

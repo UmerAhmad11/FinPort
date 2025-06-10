@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import './App.css';
+import './Withdraw.css';
 
 function Withdraw() {
 
@@ -116,7 +116,7 @@ function Withdraw() {
             </button>
             <button
                 type="button"
-                className="front-to-login-button"
+                className="withdraw-to-login-button"
                 onClick={() => {
                     localStorage.removeItem('loggedInUser'); // ✅ Log out
                     navigate('/'); // ✅ Redirect to login
@@ -133,7 +133,7 @@ function Withdraw() {
             </button>
         </div>
 
-        <div className="deposit-form">
+        <div className="withdraw-form">
             <form onSubmit={handleSubmit}>
                 <input
                     type="number"
@@ -144,7 +144,7 @@ function Withdraw() {
                 />
                 <button 
                     type="submit"
-                    className="deposit-button"
+                    className="withdraw-button"
                 >   Withdraw
                 </button>
             </form>

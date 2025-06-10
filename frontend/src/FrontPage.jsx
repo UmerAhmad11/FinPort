@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import './App.css';
-import Navbar from './Navbar';
+import './Frontpage.css';
+
 
 function FrontPage() {
 

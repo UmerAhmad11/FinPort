@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+/*=== Portfolio Page ===*/
+
+.App.portfolio{
+    max-width: 1500px;
+    min-width: 1500px;
+    margin: 3rem auto;
+    padding: 2rem;
+    border-radius: 16px;
+    font-family: 'Segoe UI', sans-serif;
+    transition: background 0.4s ease, box-shadow 0.3s;
+    background: radial-gradient(circle at center, #155a0c, #121212);
+    box-shadow: 0 0 20px rgba(180, 62, 62, 0.35);
+  }
+
+  .welcome-message {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    font-family: "Georgia", serif;
+  }
+
+  .listof-purchases {
+    margin-top: 1rem;
+    color: #d0f0ff;
+    text-align: center;
+  }
+
+  .portfolio-to-frontpage-button {
+    margin-top: 0.5rem;
+    margin-left: 505px;
+    padding: 0.7rem;
+    width: 420px;
+    background-color: #ed8c31; /* Slightly different than submit */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .portfolio-to-frontpage-button:hover {
+    transform: scale(1.05);
+    background-color: #c6720a;
+  }
+
+  .response {
+    margin-top: 1.2rem;
+    text-align: center;
+    font-style: italic;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* ⏳ 0–20% fade in, stay visible, fade out toward 100% */
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    20% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    80% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+  }
+  
