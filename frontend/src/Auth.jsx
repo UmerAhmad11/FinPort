@@ -64,8 +64,8 @@ export default function Auth() {
       if (data.user_id) {
         localStorage.setItem('userId', data.user_id); // 👈 Add this
       }
-      if (mode === 'signup') {
-        localStorage.setItem('fullName', name);
+      if (data.name) {
+        localStorage.setItem('fullName', data.name);
       }
 
       setMessage(data.message);
