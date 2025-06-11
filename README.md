@@ -28,9 +28,6 @@ Welcome to **FinPort**, a fully functional simulated stock trading web applicati
 |--------------|---------------|-------------|----------------|
 | ![Deposit](assets/screenshots/Deposit.png) | ![Withdraw](assets/screenshots/Withdraw.png) | ![FrontPage](assets/screenshots/FrontPage.png) | ![Trade Tracker](assets/screenshots/TradesTracker.png) |
 
-
-> 📁 **Note**: Place your actual screenshots in `assets/screenshots/` and rename accordingly.
-
 ---
 
 ## 📂 Project Structure
