@@ -1,71 +1,142 @@
-# FinPort
 
-Project Name: FinPort — Financial Portfolio Manager
-Tech Stack
-Backend: Python (Flask or FastAPI) or Java (Spring Boot)
+# 💼 FinPort: Simulated Stock Trading Platform
 
-Frontend (optional): React or basic HTML templates
+Welcome to **FinPort**, a fully functional simulated stock trading web application. It is designed to mimic real-world stock investment and trading behaviors, helping users build financial literacy in a controlled environment.
 
-API Integration: Live market data from Alpha Vantage or Finnhub
+---
 
-Database: PostgreSQL or SQLite
+## 🚀 Features
 
-Extras: Docker, GitHub Actions (CI), Kubernetes (deployment)
+- 🔐 User Authentication (Sign up / Login)
+- 💸 Simulated Deposits & Withdrawals
+- 📈 Stock Portfolio Management
+- 🛒 Buy & Sell Stocks in Real-Time Simulation
+- 📜 Trade History Tracking
+- 💼 Balance & Holdings Overview
+- 🎨 Modern UI with TailwindCSS
+- 🧠 Prepared for AI-based assistant integration
 
-Core Features
-User Portfolio Management
+---
 
-Create user accounts (no auth needed, just simulate)
+## 🖼️ Screenshots
 
-Buy/Sell stocks
+| Auth Page | Trading Page | Portfolio View |
+|----------|--------------|----------------|
+| ![Auth Page](assets/screenshots/auth-page.png) | ![Trading](assets/screenshots/trading.png) | ![Portfolio](assets/screenshots/portfolio.png) |
 
-View current portfolio with holdings, gains/losses
+> 📁 **Note**: Place your actual screenshots in `assets/screenshots/` and rename accordingly.
 
-Stock Market Data Integration
+---
 
-Pull real-time or historical stock prices via API
+## 📂 Project Structure
 
-Cache responses to reduce API calls
+```
+backend/
+├── api.py                # FastAPI routes
+├── auth.py               # Login / Signup logic
+├── deposit.py            # Deposit endpoint
+├── withdraw.py           # Withdraw endpoint
+├── portfolio.py          # Portfolio routes
+├── trades.py             # Trade routes
+├── portfolio_data.py     # Data logic for portfolios
+├── storage_balance.py    # Balance retrieval
+├── trades_tracker.py     # Trade log functions
+├── schemas.py            # Pydantic models
+├── storage.py            # Generic JSON storage handler
+├── frontpage.py          # Landing logic
+├── users.json            # User data
+├── balances.json         # Simulated balance
+├── portfolio.json        # Holdings
+└── trades.json           # Trade history
 
-Backend API
+frontend/
+└── [React App here with TailwindCSS styling]
+```
 
-/buy, /sell, /portfolio, /stocks/<ticker>
+---
 
-JSON input/output
+## 🔧 Tech Stack
 
-Database Storage
+- **Backend**: Python, FastAPI
+- **Frontend**: React, TailwindCSS
+- **Storage**: JSON files (for simulating DB)
+- **Authentication**: bcrypt hashed passwords
+- **Unique IDs**: UUID for user identification
 
-Tables: Users, Transactions, Holdings
+---
 
-Store each buy/sell as a row, update net holdings
+## 🧪 Example Users
 
-Optional Frontend
+| Username    | Password     | Balance | Stocks      |
+|-------------|--------------|---------|-------------|
+| UmerAhmad11 | `test1234`   | $275    | 30 GOOGLE   |
+| Salman55    | `test5678`   | $0      | 1 META, 20 GOOGLE |
 
-React app to interact with the API
+---
 
-Docker + CI/CD
+## 📈 Example Trades
 
-Dockerize the app
+- Salman bought 2 META
+- Salman sold 1 META to UmerAhmad11
+- UmerAhmad11 bought 50 GOOGLE, sold 20 to Salman
 
-GitHub Actions: run tests + build Docker image
+Data is stored in:
+- `trades.json`
+- `portfolio.json`
+- `balances.json`
 
-Deploy to Kubernetes (Minikube or GKE)
+---
 
-Phase 1 – Build the Core (Local)
-Set up the backend API with buy, sell, portfolio
+## 🛠️ Setup Instructions
 
-Connect to a real stock API (I can help with this)
+```bash
+# 1. Clone the repo
+git clone https://github.com/yourusername/finport.git
+cd finport
 
-Store users and transactions in SQLite/Postgres
+# 2. Setup Python environment
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 
-Phase 2 – Docker + CI
-Add a Dockerfile
+# 3. Run the FastAPI backend
+uvicorn api:app --reload
 
-Write basic unit tests
+# 4. Setup and run frontend
+cd ../frontend
+npm install
+npm run dev
+```
 
-Set up GitHub Actions for test + build
+---
 
-Phase 3 – Kubernetes
-Create deployment.yaml, service.yaml
+## 🔒 Security Notes
 
-Deploy to Minikube (local K8s cluster)
+- Passwords are stored securely using bcrypt.
+- Future upgrades should include:
+  - Migration to a secure DB like PostgreSQL
+  - JWT-based authentication
+  - OAuth for third-party sign-in
+
+---
+
+## 📌 TODO
+
+- [ ] Add real-time stock price API integration
+- [ ] Add dashboard charts using Recharts or Chart.js
+- [ ] Secure file-based data with database
+- [ ] AI assistant integration for user tips
+
+---
+
+## 📃 License
+
+MIT License. See [LICENSE](LICENSE) for details.
+
+---
+
+## ✨ Author
+
+**Syed Umer Ahmad** — *Full-stack developer preparing for UBS Tech Graduate Program*  
+📫 [LinkedIn](https://linkedin.com/in/your-profile) | [GitHub](https://github.com/yourusername)
