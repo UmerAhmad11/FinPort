@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 /*=== Front Page ===*/
 
@@ -136,3 +137,191 @@
     transform: scale(1.05);
     background-color: #63298b;
   }
+
+.frontpage-bg-mountains {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  font-family: 'Montserrat', Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mountain-bg-svg {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.frontpage-card {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 40px 0 rgba(80, 60, 120, 0.25), 0 1.5px 8px 0 rgba(80, 60, 120, 0.10);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  min-width: 340px;
+  max-width: 370px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1.2rem;
+}
+
+.frontpage-welcome {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+.frontpage-welcome span {
+  color: #7b5fa1;
+}
+
+.frontpage-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.frontpage-btn {
+  width: 100%;
+  background: linear-gradient(90deg, #b484b9 0%, #7b5fa1 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.9rem 0;
+  box-shadow: 0 2px 8px 0 rgba(80, 60, 120, 0.10);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  margin-bottom: 0.1rem;
+}
+.frontpage-btn:hover {
+  background: linear-gradient(90deg, #75295e 0%, #7b5fa1 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+.frontpage-btn.logout {
+  background: linear-gradient(90deg, #2572b6 0%, #672f67 100%);
+  margin-top: 0.5rem;
+}
+.frontpage-btn.logout:hover {
+  background: linear-gradient(90deg, #1a3a5a 0%, #672f67 100%);
+}
+
+@media (max-width: 600px) {
+  .frontpage-card {
+    min-width: 90vw;
+    max-width: 95vw;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+  .mountain-bg-svg {
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+}
+
+.frontpage-card.large {
+  min-width: 600px;
+  max-width: 700px;
+  padding: 3.5rem 3.5rem 2.5rem 3.5rem;
+}
+
+.frontpage-actions.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 2rem;
+  margin-top: 2rem;
+}
+
+.frontpage-action-card {
+  background: linear-gradient(120deg, #fbc2eb 0%, #b484b9 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(123, 95, 161, 0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.2rem 1.2rem 1.5rem 1.2rem;
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 600;
+  color: #672f67;
+  font-size: 1.15rem;
+  border: none;
+  outline: none;
+  min-width: 0;
+}
+.frontpage-action-card:hover {
+  background: linear-gradient(120deg, #b484b9 0%, #7b5fa1 100%);
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 8px 32px 0 rgba(123, 95, 161, 0.18);
+}
+.action-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.7rem;
+  display: block;
+}
+.action-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #672f67;
+}
+
+.frontpage-btn.logout.corner {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  width: auto;
+  min-width: 0;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2572b6 0%, #672f67 100%);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 2px 8px 0 rgba(80, 60, 120, 0.10);
+  z-index: 2;
+  transition: background 0.2s, transform 0.2s;
+}
+.frontpage-btn.logout.corner:hover {
+  background: linear-gradient(90deg, #1a3a5a 0%, #672f67 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+@media (max-width: 900px) {
+  .frontpage-card.large {
+    min-width: 95vw;
+    max-width: 99vw;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+  .frontpage-actions.cards {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}
+
+.frontpage-action-card.logout {
+  background: linear-gradient(120deg, #fbc2eb 0%, #b484b9 100%) !important;
+  color: #672f67;
+}
+.frontpage-action-card.logout .action-label {
+  color: #672f67;
+}
+.frontpage-action-card.logout:hover {
+  background: linear-gradient(120deg, #b484b9 0%, #7b5fa1 100%) !important;
+}

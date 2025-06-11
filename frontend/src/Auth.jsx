@@ -77,60 +77,114 @@ export default function Auth() {
   };
 
   return (
-    <div className="App auth">
-
-      <h2>{mode === 'signup' ? 'Sign Up' : 'Login'}</h2>
-
-      <div className="toggle-container">
-        <button
-          className={mode === 'login' ? 'active' : ''}
-          onClick={() => handleToggle('login')}
-        >
-          Login
-        </button>
-        <button
-          className={mode === 'signup' ? 'active' : ''}
-          onClick={() => handleToggle('signup')}
-        >
-          Sign Up
-        </button>
-      </div>
-
-      <form onSubmit={handleSubmit}>
-        {mode === 'signup' && (
-          <>
-            <input
-              placeholder="Full Name"
-              value={name}
-              className="input-default"
-              onChange={(e) => setName(e.target.value)}
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              className="input-default"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </>
+    <div className="auth-bg-mountains">
+      <svg className="mountain-bg-svg" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="skyGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#a18cd1"/>
+            <stop offset="100%" stopColor="#fbc2eb"/>
+          </linearGradient>
+        </defs>
+        <rect width="1440" height="900" fill="url(#skyGradient)"/>
+        {/* Moon */}
+        <circle cx="1200" cy="120" r="60" fill="#fff" fillOpacity="0.7">
+          <animate attributeName="cy" values="120;140;120" dur="8s" repeatCount="indefinite"/>
+        </circle>
+        {/* Mountains */}
+        <path d="M0 700 Q 300 600 500 700 T 1000 700 T 1440 700 V900 H0Z" fill="#7b5fa1"/>
+        <path d="M0 800 Q 400 650 800 800 T 1440 800 V900 H0Z" fill="#b484b9"/>
+        <path d="M0 900 Q 600 750 1440 900 V900 H0Z" fill="#fbc2eb"/>
+        {/* Shooting stars */}
+        <g>
+          <line x1="200" y1="100" x2="300" y2="120" stroke="#fff" strokeWidth="2" strokeLinecap="round">
+            <animate attributeName="x1" values="200;1200" dur="7s" repeatCount="indefinite"/>
+            <animate attributeName="x2" values="300;1300" dur="7s" repeatCount="indefinite"/>
+            <animate attributeName="y1" values="100;200" dur="7s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="120;220" dur="7s" repeatCount="indefinite"/>
+          </line>
+          <line x1="400" y1="200" x2="500" y2="220" stroke="#fff" strokeWidth="1.5" strokeLinecap="round">
+            <animate attributeName="x1" values="400;1000" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="x2" values="500;1100" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="y1" values="200;300" dur="9s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="220;320" dur="9s" repeatCount="indefinite"/>
+          </line>
+        </g>
+      </svg>
+      <div className="auth-card">
+        <h2 className="auth-card-title">{mode === 'signup' ? 'Signup' : 'Login'}</h2>
+        {mode === 'login' && (
+          <form onSubmit={handleSubmit}>
+            <div className="input-group">
+              <span className="input-icon">&#128100;</span>
+              <input
+                placeholder="Username"
+                value={username}
+                className="input-pink"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <span className="input-icon">&#128274;</span>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                className="input-pink"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button type="submit" className="auth-btn">Login</button>
+          </form>
         )}
-        <input
-          placeholder="Username"
-          value={username}
-          className="input-default"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          className="input-default"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">{mode === 'signup' ? 'Sign Up' : 'Login'}</button>
-      </form>
-
-      <p className="response">{message}</p>
+        {mode === 'login' && (
+          <button className="auth-link" type="button" onClick={() => handleToggle('signup')}>Signup</button>
+        )}
+        {mode === 'signup' && (
+          <form onSubmit={handleSubmit} className="signup-form">
+            <div className="input-group">
+              <span className="input-icon">&#128100;</span>
+              <input
+                placeholder="Full Name"
+                value={name}
+                className="input-pink"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <span className="input-icon">&#9993;</span>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                className="input-pink"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <span className="input-icon">&#128100;</span>
+              <input
+                placeholder="Username"
+                value={username}
+                className="input-pink"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <span className="input-icon">&#128274;</span>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                className="input-pink"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button type="submit" className="auth-btn">Signup</button>
+            <button className="auth-link" type="button" onClick={() => handleToggle('login')}>Back to Login</button>
+          </form>
+        )}
+        <p className="response">{message}</p>
+      </div>
     </div>
   );
 }
