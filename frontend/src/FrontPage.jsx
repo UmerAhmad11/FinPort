@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import './Frontpage.css';
+import AnimatedStockDisplay from './components/AnimatedStockDisplay';
 
 function FrontPage() {
     const [mode] = useState('frontpage');
@@ -171,28 +172,35 @@ function FrontPage() {
                 </div>
             </nav>
             <div className="frontpage-dashboard">
-                {/* Today's Gain Card */}
                 <div className="todays-gain-card">
-                    <span className="gain-title">Today's Gain</span>
-                    <span className="gain-value">+56.789%</span>
+                    <AnimatedStockDisplay />
                 </div>
                 <div className="dashboard-main">
-                    {/* Balance Widget */}
-                    <div className="dashboard-balance-widget">
-                        <div className="balance-icon-bg">
-                            <span className="balance-icon">💳</span>
+                    <div className="dashboard-left-column">
+                        {/* Balance Widget */}
+                        <div className="dashboard-balance-widget">
+                            <div className="balance-icon-bg">
+                                <span className="balance-icon">💳</span>
+                            </div>
+                            <div className="balance-info">
+                                <span className="balance-label">Available Balance</span>
+                                <span className="balance-amount-main">
+                                    {balance !== null ? (
+                                        <>${balance.toFixed(2)}</>
+                                    ) : error ? (
+                                        <span style={{ color: 'salmon', fontSize: '1rem' }}>{error}</span>
+                                    ) : (
+                                        <span>Loading...</span>
+                                    )}
+                                </span>
+                            </div>
                         </div>
-                        <div className="balance-info">
-                            <span className="balance-label">Available Balance</span>
-                            <span className="balance-amount-main">
-                                {balance !== null ? (
-                                    <>${balance.toFixed(2)}</>
-                                ) : error ? (
-                                    <span style={{ color: 'salmon', fontSize: '1rem' }}>{error}</span>
-                                ) : (
-                                    <span>Loading...</span>
-                                )}
-                            </span>
+                        {/* Date Card Moved Here */}
+                        <div className="dashboard-date-row">
+                            <div className="date-card gradient">
+                                <span className="date-label">Today</span>
+                                <span className="date-main">{prettyDate}</span>
+                            </div>
                         </div>
                     </div>
                     {/* Action Cards Grid */}
@@ -226,13 +234,6 @@ function FrontPage() {
                         </div>
                     </div>
                 </div>
-                {/* Date Card Row */}
-                <div className="dashboard-date-row">
-                    <div className="date-card gradient">
-                        <span className="date-label">Today</span>
-                        <span className="date-main">{prettyDate}</span>
-                    </div>
-            </div>
             </div>
         </div>
     )

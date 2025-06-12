@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import './Trading.css';
 
 function Trading() {
-  const [mode, setMode] = useState('buy'); // 'buy' or 'sell'
+  const [mode, setMode] = useState('buy');
   const [userId] = useState(localStorage.getItem('userId') || '');
   const [stockSymbol, setStockSymbol] = useState('');
   const [quantity, setQuantity] = useState('');
-  const [traderId, setTraderId] = useState(''); // Only for sell
+  const [traderId, setTraderId] = useState('');
   const [response, setResponse] = useState('');
   const navigate = useNavigate();
   const loggedInUser = localStorage.getItem('loggedInUser');
@@ -36,7 +36,6 @@ function Trading() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Choose endpoint and payload
     const url = `http://127.0.0.1:8000/api/${mode}`;
     const payload =
       mode === 'buy'
