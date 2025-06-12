@@ -1,84 +1,238 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import './Frontpage.css';
 
-
 function FrontPage() {
-
-
     const [mode] = useState('frontpage');
     const navigate = useNavigate();
     const loggedInUser = localStorage.getItem('loggedInUser');
-    
+    const userId = localStorage.getItem('userId') || '';
+    const [balance, setBalance] = useState(null);
+    const [error, setError] = useState('');
 
+    // Get today's date
+    const today = new Date();
+    const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    const month = monthNames[today.getMonth()];
+    const day = today.getDate();
+    const year = today.getFullYear();
+
+    // For pretty date string
+    const prettyDate = today.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+
+    // Fetch user balance
+    useEffect(() => {
+        if (!userId) return;
+        fetch(`http://127.0.0.1:8000/api/balance/${userId}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.balance !== undefined) {
+                    setBalance(data.balance);
+                } else {
+                    setError('❌ Could not fetch balance');
+                }
+            })
+            .catch(err => {
+                setError('❌ Server error fetching balance');
+            });
+    }, [userId]);
 
     return(
-        <div className="frontpage-bg-mountains">
-            <svg className="mountain-bg-svg" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <div className="frontpage-bg-fintech">
+            <svg className="fintech-bg-svg" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                 <defs>
-                    <linearGradient id="frontSkyGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#7b5fa1"/>
-                        <stop offset="100%" stopColor="#2572b6"/>
+                    <linearGradient id="fintechGradient1" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stopColor="#00C4FF"/>
+                        <stop offset="100%" stopColor="#007FFF"/>
+                    </linearGradient>
+                    <linearGradient id="fintechGradient2" x1="1" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#39FF14"/>
+                        <stop offset="100%" stopColor="#00B300"/>
+                    </linearGradient>
+                    <linearGradient id="fintechGradient3" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stopColor="#FF6B6B"/>
+                        <stop offset="100%" stopColor="#FF0000"/>
                     </linearGradient>
                 </defs>
-                <rect width="1440" height="900" fill="url(#frontSkyGradient)"/>
-                {/* Moon */}
-                <circle cx="200" cy="120" r="60" fill="#fff" fillOpacity="0.7">
-                    <animate attributeName="cy" values="120;140;120" dur="8s" repeatCount="indefinite"/>
+                {/* Animated Bars (like a growing chart) */}
+                <rect x="100" y="800" width="40" height="0" fill="url(#fintechGradient1)" opacity="0.6">
+                    <animate attributeName="height" values="0;150;0" dur="5s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="800;650;800" dur="5s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="200" y="800" width="40" height="0" fill="url(#fintechGradient2)" opacity="0.6">
+                    <animate attributeName="height" values="0;100;0" dur="6s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="800;700;800" dur="6s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="300" y="800" width="40" height="0" fill="url(#fintechGradient1)" opacity="0.6">
+                    <animate attributeName="height" values="0;200;0" dur="7s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="800;600;800" dur="7s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="400" y="800" width="40" height="0" fill="url(#fintechGradient2)" opacity="0.6">
+                    <animate attributeName="height" values="0;120;0" dur="5.5s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="800;680;800" dur="5.5s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="500" y="800" width="40" height="0" fill="url(#fintechGradient3)" opacity="0.6">
+                    <animate attributeName="height" values="0;180;0" dur="6.5s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="800;620;800" dur="6.5s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="600" y="800" width="40" height="0" fill="url(#fintechGradient1)" opacity="0.6">
+                    <animate attributeName="height" values="0;160;0" dur="5s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="800;640;800" dur="5s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="700" y="800" width="40" height="0" fill="url(#fintechGradient2)" opacity="0.6">
+                    <animate attributeName="height" values="0;140;0" dur="6s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="800;660;800" dur="6s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="800" y="800" width="40" height="0" fill="url(#fintechGradient3)" opacity="0.6">
+                    <animate attributeName="height" values="0;190;0" dur="7s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="800;610;800" dur="7s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="900" y="800" width="40" height="0" fill="url(#fintechGradient1)" opacity="0.6">
+                    <animate attributeName="height" values="0;170;0" dur="5.5s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="800;630;800" dur="5.5s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="1000" y="800" width="40" height="0" fill="url(#fintechGradient2)" opacity="0.6">
+                    <animate attributeName="height" values="0;130;0" dur="6s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="800;670;800" dur="6s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="1100" y="800" width="40" height="0" fill="url(#fintechGradient3)" opacity="0.6">
+                    <animate attributeName="height" values="0;200;0" dur="7s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="800;600;800" dur="7s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="1200" y="800" width="40" height="0" fill="url(#fintechGradient1)" opacity="0.6">
+                    <animate attributeName="height" values="0;150;0" dur="5s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="800;650;800" dur="5s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="1300" y="800" width="40" height="0" fill="url(#fintechGradient2)" opacity="0.6">
+                    <animate attributeName="height" values="0;110;0" dur="6s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="800;690;800" dur="6s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="1400" y="800" width="40" height="0" fill="url(#fintechGradient3)" opacity="0.6">
+                    <animate attributeName="height" values="0;180;0" dur="7s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="800;620;800" dur="7s" repeatCount="indefinite"/>
+                </rect>
+                {/* Animated Line Graph */}
+                <polyline points="0,450 300,400 600,480 900,420 1200,500 1440,450" fill="none" stroke="#00C4FF" strokeWidth="3" opacity="0.4">
+                    <animate attributeName="points" values="0,450 300,400 600,480 900,420 1200,500 1440,450;0,460 300,390 600,490 900,410 1200,510 1440,460;0,450 300,400 600,480 900,420 1200,500 1440,450" dur="15s" repeatCount="indefinite"/>
+                </polyline>
+                {/* Animated Dots/Nodes (like network activity) */}
+                <circle cx="250" cy="300" r="8" fill="#00C4FF" opacity="0.3">
+                    <animate attributeName="cy" values="300;320;300" dur="4s" repeatCount="indefinite"/>
                 </circle>
-                {/* Mountains */}
-                <path d="M0 700 Q 300 600 500 700 T 1000 700 T 1440 700 V900 H0Z" fill="#2572b6"/>
-                <path d="M0 800 Q 400 650 800 800 T 1440 800 V900 H0Z" fill="#7b5fa1"/>
-                <path d="M0 900 Q 600 750 1440 900 V900 H0Z" fill="#b484b9"/>
-                {/* Shooting stars */}
-                <g>
-                    <line x1="1200" y1="100" x2="1300" y2="120" stroke="#fff" strokeWidth="2" strokeLinecap="round">
-                        <animate attributeName="x1" values="1200;200" dur="7s" repeatCount="indefinite"/>
-                        <animate attributeName="x2" values="1300;300" dur="7s" repeatCount="indefinite"/>
-                        <animate attributeName="y1" values="100;200" dur="7s" repeatCount="indefinite"/>
-                        <animate attributeName="y2" values="120;220" dur="7s" repeatCount="indefinite"/>
-                    </line>
-                    <line x1="1000" y1="200" x2="1100" y2="220" stroke="#fff" strokeWidth="1.5" strokeLinecap="round">
-                        <animate attributeName="x1" values="1000;400" dur="9s" repeatCount="indefinite"/>
-                        <animate attributeName="x2" values="1100;500" dur="9s" repeatCount="indefinite"/>
-                        <animate attributeName="y1" values="200;300" dur="9s" repeatCount="indefinite"/>
-                        <animate attributeName="y2" values="220;320" dur="9s" repeatCount="indefinite"/>
-                    </line>
-                </g>
+                <circle cx="700" cy="250" r="8" fill="#39FF14" opacity="0.3">
+                    <animate attributeName="cy" values="250;270;250" dur="5s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="1000" cy="350" r="8" fill="#007FFF" opacity="0.3">
+                    <animate attributeName="cy" values="350;370;350" dur="4.5s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="1300" cy="200" r="8" fill="#00B300" opacity="0.3">
+                    <animate attributeName="cy" values="200;220;200" dur="6s" repeatCount="indefinite"/>
+                </circle>
+                {/* Additional Animated Graph on the Right (near the top) */}
+                <polyline points="1200,100 1300,80 1400,120 1500,60" fill="none" stroke="#39FF14" strokeWidth="2" opacity="0.4">
+                    <animate attributeName="points" values="1200,100 1300,80 1400,120 1500,60;1200,110 1300,70 1400,130 1500,50;1200,100 1300,80 1400,120 1500,60" dur="10s" repeatCount="indefinite"/>
+                </polyline>
+                <rect x="1250" y="150" width="30" height="0" fill="url(#fintechGradient1)" opacity="0.5">
+                    <animate attributeName="height" values="0;80;0" dur="4s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="150;70;150" dur="4s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="1350" y="150" width="30" height="0" fill="url(#fintechGradient2)" opacity="0.5">
+                    <animate attributeName="height" values="0;60;0" dur="5s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="150;90;150" dur="5s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="1450" y="150" width="30" height="0" fill="url(#fintechGradient1)" opacity="0.5">
+                    <animate attributeName="height" values="0;100;0" dur="6s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="150;50;150" dur="6s" repeatCount="indefinite"/>
+                </rect>
             </svg>
-            <div className="frontpage-card large">
-                {loggedInUser && (
-                    <h1 className="frontpage-welcome">Welcome to <span>FinPort</span>, {loggedInUser} 👋</h1>
-                )}
-                <div className="frontpage-actions cards">
-                    <div className="frontpage-action-card" onClick={() => navigate('/trade')}>
-                        <span className="action-icon">💹</span>
-                        <span className="action-label">Go to Trading</span>
-                    </div>
-                    <div className="frontpage-action-card" onClick={() => navigate('/deposit')}>
-                        <span className="action-icon">💰</span>
-                        <span className="action-label">Go to Deposit</span>
-                    </div>
-                    <div className="frontpage-action-card" onClick={() => navigate('/trades')}>
-                        <span className="action-icon">📈</span>
-                        <span className="action-label">Track Your Trades</span>
-                    </div>
-                    <div className="frontpage-action-card" onClick={() => navigate('/portfolio')}>
-                        <span className="action-icon">🗂️</span>
-                        <span className="action-label">View Portfolio</span>
-                    </div>
-                    <div className="frontpage-action-card" onClick={() => navigate('/withdraw')}>
-                        <span className="action-icon">🏦</span>
-                        <span className="action-label">Go to Withdraw</span>
-                    </div>
-                    <div className="frontpage-action-card logout" onClick={() => {
+            {/* Top Navigation Bar */}
+            <nav className="frontpage-navbar">
+                <div className="nav-left">
+                    <span className="nav-logo">FinPort</span>
+                    <a href="#features">Features</a>
+                    <a href="#why">Why FinPort?</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#blog">Blog</a>
+                </div>
+                <div className="nav-right">
+                    <span className="nav-user">{loggedInUser}</span>
+                    <button className="nav-btn" onClick={() => {
                         localStorage.removeItem('loggedInUser');
                         navigate('/');
-                    }}>
-                        <span className="action-icon">🚪</span>
-                        <span className="action-label">End Trading Session</span>
+                    }}>Log Out</button>
+                </div>
+            </nav>
+            <div className="frontpage-dashboard">
+                {/* Today's Gain Card */}
+                <div className="todays-gain-card">
+                    <span className="gain-title">Today's Gain</span>
+                    <span className="gain-value">+56.789%</span>
+                </div>
+                <div className="dashboard-main">
+                    {/* Balance Widget */}
+                    <div className="dashboard-balance-widget">
+                        <div className="balance-icon-bg">
+                            <span className="balance-icon">💳</span>
+                        </div>
+                        <div className="balance-info">
+                            <span className="balance-label">Available Balance</span>
+                            <span className="balance-amount-main">
+                                {balance !== null ? (
+                                    <>${balance.toFixed(2)}</>
+                                ) : error ? (
+                                    <span style={{ color: 'salmon', fontSize: '1rem' }}>{error}</span>
+                                ) : (
+                                    <span>Loading...</span>
+                                )}
+                            </span>
+                        </div>
+                    </div>
+                    {/* Action Cards Grid */}
+                    <div className="dashboard-actions-grid">
+                        <div className="frontpage-action-card" onClick={() => navigate('/trade')}>
+                            <span className="action-icon">💹</span>
+                            <span className="action-label">Go to Trading</span>
+                        </div>
+                        <div className="frontpage-action-card" onClick={() => navigate('/deposit')}>
+                            <span className="action-icon">💰</span>
+                            <span className="action-label">Go to Deposit</span>
+                        </div>
+                        <div className="frontpage-action-card" onClick={() => navigate('/trades')}>
+                            <span className="action-icon">📈</span>
+                            <span className="action-label">Track Your Trades</span>
+                        </div>
+                        <div className="frontpage-action-card" onClick={() => navigate('/portfolio')}>
+                            <span className="action-icon">🗂️</span>
+                            <span className="action-label">View Portfolio</span>
+                        </div>
+                        <div className="frontpage-action-card" onClick={() => navigate('/withdraw')}>
+                            <span className="action-icon">🏦</span>
+                            <span className="action-label">Go to Withdraw</span>
+                        </div>
+                        <div className="frontpage-action-card logout" onClick={() => {
+                            localStorage.removeItem('loggedInUser');
+                            navigate('/');
+                        }}>
+                            <span className="action-icon">🚪</span>
+                            <span className="action-label">End Trading Session</span>
+                        </div>
                     </div>
                 </div>
+                {/* Date Card Row */}
+                <div className="dashboard-date-row">
+                    <div className="date-card gradient">
+                        <span className="date-label">Today</span>
+                        <span className="date-main">{prettyDate}</span>
+                    </div>
+            </div>
             </div>
         </div>
     )

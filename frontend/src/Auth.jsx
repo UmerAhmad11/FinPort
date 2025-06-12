@@ -77,41 +77,85 @@ export default function Auth() {
   };
 
   return (
-    <div className="auth-bg-mountains">
-      <svg className="mountain-bg-svg" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <div className="auth-bg-fintech">
+      <svg className="fintech-bg-svg" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
         <defs>
-          <linearGradient id="skyGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#a18cd1"/>
-            <stop offset="100%" stopColor="#fbc2eb"/>
+          <linearGradient id="fintechGradient1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#00C4FF"/>
+            <stop offset="100%" stopColor="#007FFF"/>
+          </linearGradient>
+          <linearGradient id="fintechGradient2" x1="1" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#39FF14"/>
+            <stop offset="100%" stopColor="#00B300"/>
           </linearGradient>
         </defs>
-        <rect width="1440" height="900" fill="url(#skyGradient)"/>
-        {/* Moon */}
-        <circle cx="1200" cy="120" r="60" fill="#fff" fillOpacity="0.7">
-          <animate attributeName="cy" values="120;140;120" dur="8s" repeatCount="indefinite"/>
+        {/* Animated Bars (like a growing chart) */}
+        <rect x="100" y="800" width="40" height="0" fill="url(#fintechGradient1)" opacity="0.6">
+          <animate attributeName="height" values="0;150;0" dur="5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="800;650;800" dur="5s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="200" y="800" width="40" height="0" fill="url(#fintechGradient2)" opacity="0.6">
+          <animate attributeName="height" values="0;100;0" dur="6s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="800;700;800" dur="6s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="300" y="800" width="40" height="0" fill="url(#fintechGradient1)" opacity="0.6">
+          <animate attributeName="height" values="0;200;0" dur="7s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="800;600;800" dur="7s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="400" y="800" width="40" height="0" fill="url(#fintechGradient2)" opacity="0.6">
+          <animate attributeName="height" values="0;120;0" dur="5.5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="800;680;800" dur="5.5s" repeatCount="indefinite"/>
+        </rect>
+        {/* Animated Line Graph */}
+        <polyline points="0,450 300,400 600,480 900,420 1200,500 1440,450" fill="none" stroke="#00C4FF" strokeWidth="3" opacity="0.4">
+          <animate attributeName="points" values="0,450 300,400 600,480 900,420 1200,500 1440,450;0,460 300,390 600,490 900,410 1200,510 1440,460;0,450 300,400 600,480 900,420 1200,500 1440,450" dur="15s" repeatCount="indefinite"/>
+        </polyline>
+        {/* Animated Dots/Nodes (like network activity) */}
+        <circle cx="250" cy="300" r="8" fill="#00C4FF" opacity="0.3">
+          <animate attributeName="cy" values="300;320;300" dur="4s" repeatCount="indefinite"/>
         </circle>
-        {/* Mountains */}
-        <path d="M0 700 Q 300 600 500 700 T 1000 700 T 1440 700 V900 H0Z" fill="#7b5fa1"/>
-        <path d="M0 800 Q 400 650 800 800 T 1440 800 V900 H0Z" fill="#b484b9"/>
-        <path d="M0 900 Q 600 750 1440 900 V900 H0Z" fill="#fbc2eb"/>
-        {/* Shooting stars */}
-        <g>
-          <line x1="200" y1="100" x2="300" y2="120" stroke="#fff" strokeWidth="2" strokeLinecap="round">
-            <animate attributeName="x1" values="200;1200" dur="7s" repeatCount="indefinite"/>
-            <animate attributeName="x2" values="300;1300" dur="7s" repeatCount="indefinite"/>
-            <animate attributeName="y1" values="100;200" dur="7s" repeatCount="indefinite"/>
-            <animate attributeName="y2" values="120;220" dur="7s" repeatCount="indefinite"/>
-          </line>
-          <line x1="400" y1="200" x2="500" y2="220" stroke="#fff" strokeWidth="1.5" strokeLinecap="round">
-            <animate attributeName="x1" values="400;1000" dur="9s" repeatCount="indefinite"/>
-            <animate attributeName="x2" values="500;1100" dur="9s" repeatCount="indefinite"/>
-            <animate attributeName="y1" values="200;300" dur="9s" repeatCount="indefinite"/>
-            <animate attributeName="y2" values="220;320" dur="9s" repeatCount="indefinite"/>
-          </line>
-        </g>
+        <circle cx="700" cy="250" r="8" fill="#39FF14" opacity="0.3">
+          <animate attributeName="cy" values="250;270;250" dur="5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="1000" cy="350" r="8" fill="#007FFF" opacity="0.3">
+          <animate attributeName="cy" values="350;370;350" dur="4.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="1300" cy="200" r="8" fill="#00B300" opacity="0.3">
+          <animate attributeName="cy" values="200;220;200" dur="6s" repeatCount="indefinite"/>
+        </circle>
+        {/* Additional Animated Graph on the Right (near the top) */}
+        <polyline points="1200,100 1300,80 1400,120 1500,60" fill="none" stroke="#39FF14" strokeWidth="2" opacity="0.4">
+          <animate attributeName="points" values="1200,100 1300,80 1400,120 1500,60;1200,110 1300,70 1400,130 1500,50;1200,100 1300,80 1400,120 1500,60" dur="10s" repeatCount="indefinite"/>
+        </polyline>
+        <rect x="1250" y="150" width="30" height="0" fill="url(#fintechGradient1)" opacity="0.5">
+          <animate attributeName="height" values="0;80;0" dur="4s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="150;70;150" dur="4s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="1350" y="150" width="30" height="0" fill="url(#fintechGradient2)" opacity="0.5">
+          <animate attributeName="height" values="0;60;0" dur="5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="150;90;150" dur="5s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="1450" y="150" width="30" height="0" fill="url(#fintechGradient1)" opacity="0.5">
+          <animate attributeName="height" values="0;100;0" dur="6s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="150;50;150" dur="6s" repeatCount="indefinite"/>
+        </rect>
       </svg>
       <div className="auth-card">
         <h2 className="auth-card-title">{mode === 'signup' ? 'Signup' : 'Login'}</h2>
+        <div className="toggle-switch">
+          <button
+            className={mode === 'login' ? 'active' : ''}
+            onClick={() => handleToggle('login')}
+          >
+            Login
+          </button>
+          <button
+            className={mode === 'signup' ? 'active' : ''}
+            onClick={() => handleToggle('signup')}
+          >
+            Signup
+          </button>
+        </div>
         {mode === 'login' && (
           <form onSubmit={handleSubmit}>
             <div className="input-group">
