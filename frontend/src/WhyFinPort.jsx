@@ -1,53 +1,9 @@
-import {useState, useEffect} from 'react';
-import {useNavigate, Link} from 'react-router-dom';
-import './Frontpage.css';
-import AnimatedStockDisplay from './components/AnimatedStockDisplay';
+import React from 'react';
+import './WhyFinPort.css';
 
-function FrontPage() {
-    const [mode] = useState('frontpage');
-    const navigate = useNavigate();
-    const loggedInUser = localStorage.getItem('loggedInUser');
-    const userId = localStorage.getItem('userId') || '';
-    const [balance, setBalance] = useState(null);
-    const [error, setError] = useState('');
-
-    // Get today's date
-    const today = new Date();
-    const monthNames = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-    const month = monthNames[today.getMonth()];
-    const day = today.getDate();
-    const year = today.getFullYear();
-
-    // For pretty date string
-    const prettyDate = today.toLocaleDateString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    });
-
-    // Fetch user balance
-    useEffect(() => {
-        if (!userId) return;
-        fetch(`http://127.0.0.1:8000/api/balance/${userId}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.balance !== undefined) {
-                    setBalance(data.balance);
-                } else {
-                    setError('❌ Could not fetch balance');
-                }
-            })
-            .catch(err => {
-                setError('❌ Server error fetching balance');
-            });
-    }, [userId]);
-
-    return(
-        <div className="frontpage-bg-fintech">
+function WhyFinPort() {
+  return (
+    <div className="frontpage-bg-fintech">
             <svg className="fintech-bg-svg" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                 <defs>
                     <linearGradient id="fintechGradient1" x1="0" y1="0" x2="1" y2="1">
@@ -154,89 +110,14 @@ function FrontPage() {
                     <animate attributeName="y" values="150;50;150" dur="6s" repeatCount="indefinite"/>
                 </rect>
             </svg>
-            {/* Top Navigation Bar */}
-            <nav className="frontpage-navbar">
-                <div className="nav-left">
-                    <span className="nav-logo">FinPort</span>
-                    <Link to="/features">Features</Link>
-                    <Link to="/why">Why FinPort?</Link>
-                    <Link to="/pricing">Pricing</Link>
-                    <Link to="/blog">Blog</Link>
-                </div>
-                <div className="nav-right">
-                    <span className="nav-user">{loggedInUser}</span>
-                    <button className="nav-btn" onClick={() => {
-                        localStorage.removeItem('loggedInUser');
-                        navigate('/');
-                    }}>Log Out</button>
-                </div>
-            </nav>
-            <div className="frontpage-dashboard">
-                <div className="todays-gain-card">
-                    <AnimatedStockDisplay />
-                </div>
-                <div className="dashboard-main">
-                    <div className="dashboard-left-column">
-                        {/* Balance Widget */}
-                        <div className="dashboard-balance-widget">
-                            <div className="balance-icon-bg">
-                                <span className="balance-icon">💳</span>
-                            </div>
-                            <div className="balance-info">
-                                <span className="balance-label">Available Balance</span>
-                                <span className="balance-amount-main">
-                                    {balance !== null ? (
-                                        <>${balance.toFixed(2)}</>
-                                    ) : error ? (
-                                        <span style={{ color: 'salmon', fontSize: '1rem' }}>{error}</span>
-                                    ) : (
-                                        <span>Loading...</span>
-                                    )}
-                                </span>
-                            </div>
-                        </div>
-                        {/* Date Card Moved Here */}
-                        <div className="dashboard-date-row">
-                            <div className="date-card gradient">
-                                <span className="date-label">Today</span>
-                                <span className="date-main">{prettyDate}</span>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Action Cards Grid */}
-                    <div className="dashboard-actions-grid">
-                        <div className="frontpage-action-card" onClick={() => navigate('/trade')}>
-                            <span className="action-icon">💹</span>
-                            <span className="action-label">Go to Trading</span>
-                        </div>
-                        <div className="frontpage-action-card" onClick={() => navigate('/deposit')}>
-                            <span className="action-icon">💰</span>
-                            <span className="action-label">Go to Deposit</span>
-                        </div>
-                        <div className="frontpage-action-card" onClick={() => navigate('/trades')}>
-                            <span className="action-icon">📈</span>
-                            <span className="action-label">Track Your Trades</span>
-                        </div>
-                        <div className="frontpage-action-card" onClick={() => navigate('/portfolio')}>
-                            <span className="action-icon">🗂️</span>
-                            <span className="action-label">View Portfolio</span>
-                        </div>
-                        <div className="frontpage-action-card" onClick={() => navigate('/withdraw')}>
-                            <span className="action-icon">🏦</span>
-                            <span className="action-label">Go to Withdraw</span>
-                        </div>
-                        <div className="frontpage-action-card logout" onClick={() => {
-                            localStorage.removeItem('loggedInUser');
-                            navigate('/');
-                        }}>
-                            <span className="action-icon">🚪</span>
-                            <span className="action-label">End Trading Session</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div className="features-content">
+        <div className="features-card">
+          <h2 className="features-title">Why FinPort?</h2>
+          <p className="features-desc">Learn why FinPort is the best choice for your trading and portfolio needs. (Coming soon!)</p>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-export default FrontPage;
+export default WhyFinPort; 

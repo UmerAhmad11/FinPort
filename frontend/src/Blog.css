@@ -1,0 +1,62 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/*=== Blog Page ===*/
+
+.frontpage-bg-fintech{
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    font-family: 'Montserrat', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+.fintech-bg-svg {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.features-content {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.features-card {
+  background: linear-gradient(120deg, #6E8EFB 0%, #4FC3F7 100%);
+  border-radius: 18px;
+  box-shadow: 0 2px 12px 0 rgba(110, 142, 251, 0.15);
+  padding: 2.5rem 2rem;
+  max-width: 500px;
+  width: 100%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+.features-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.features-desc {
+  font-size: 1.15rem;
+  color: #e0eaff;
+  text-align: center;
+} 

@@ -7,6 +7,10 @@ import Deposit from './Deposit';
 import Withdraw from './Withdraw';
 import TradesTracker from './TradesTracker';
 import Portfolio from './Portfolio';
+import Features from './Features';
+import WhyFinPort from './WhyFinPort';
+import Pricing from './Pricing';
+import Blog from './Blog';
 import './App.css';
 
 function App() {
@@ -62,6 +66,10 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/features" element={<Features />} />
+        <Route path="/why" element={<WhyFinPort />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/blog" element={<Blog />} />
       </Routes>
     </BrowserRouter>
   );
