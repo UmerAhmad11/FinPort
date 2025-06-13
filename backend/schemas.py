@@ -4,6 +4,7 @@ class TradeRequest(BaseModel):
     user_id: str
     stock_symbol: str
     quantity: int
+    total_cost: float = None
 
 
 class TradeSell(BaseModel):

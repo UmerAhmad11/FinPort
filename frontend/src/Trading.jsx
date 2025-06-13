@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Trading.css';
+import axios from 'axios';
 
 function Trading() {
   const [mode, setMode] = useState('buy');
@@ -9,6 +10,9 @@ function Trading() {
   const [quantity, setQuantity] = useState('');
   const [traderId, setTraderId] = useState('');
   const [response, setResponse] = useState('');
+  const [balance, setBalance] = useState(null);
+  const [lastBuyCost, setLastBuyCost] = useState(0);
+  const [lastBuyMode, setLastBuyMode] = useState('');
   const navigate = useNavigate();
   const loggedInUser = localStorage.getItem('loggedInUser');
 
@@ -33,8 +37,49 @@ function Trading() {
     }
   }, [response]);
 
+  // Fetch user balance on mount
+  useEffect(() => {
+    if (!userId) return;
+    fetch(`http://127.0.0.1:8000/api/balance/${userId}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.balance !== undefined) {
+          setBalance(data.balance);
+        }
+      })
+      .catch(() => {});
+  }, [userId]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let buyCost = 0;
+
+    if (mode === 'buy') {
+      // Fetch price from Finnhub
+      const API_KEY = import.meta.env.VITE_ALPHA_VANTAGE_API_KEY;
+      const BASE_URL = 'https://finnhub.io/api/v1/quote';
+      try {
+        const response = await axios.get(BASE_URL, {
+          params: {
+            symbol: stockSymbol.toUpperCase(),
+            token: API_KEY
+          }
+        });
+        const price = response.data.c;
+        buyCost = price * parseInt(quantity);
+        if (balance !== null && buyCost > balance) {
+          setResponse('❌ Insufficient funds to buy this stock.');
+          return;
+        }
+        setLastBuyCost(buyCost);
+        setLastBuyMode('buy');
+      } catch (err) {
+        setResponse('❌ Error fetching stock price.');
+        return;
+      }
+    } else {
+      setLastBuyMode('');
+    }
 
     const url = `http://127.0.0.1:8000/api/${mode}`;
     const payload =
@@ -43,6 +88,7 @@ function Trading() {
             user_id: userId,
             stock_symbol: stockSymbol,
             quantity: parseInt(quantity),
+            total_cost: buyCost,
           }
         : {
             user_id: userId,
@@ -60,6 +106,10 @@ function Trading() {
 
       const data = await res.json();
       setResponse(data.message || 'Trade completed.');
+      // If buy was successful, update local balance
+      if (mode === 'buy' && (!data.message || !data.message.startsWith('❌'))) {
+        setBalance(prev => prev !== null ? prev - lastBuyCost : prev);
+      }
     } catch (err) {
       console.error(err);
       setResponse('❌ Error placing trade.');

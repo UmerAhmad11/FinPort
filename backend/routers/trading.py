@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 from schemas import TradeRequest, TradeSell
 from data.portfolio_data import save_purchases, load_portfolio
 from data.trades import record_trade  # ✅ New import for trade history
+from data.storage_balance import withdraw_balances  # ✅ Import for balance deduction
 
 router = APIRouter()
 
@@ -15,6 +16,14 @@ async def get_trade():
 async def buy(trade: TradeRequest):
     user_id = str(trade.user_id)
     stock = trade.stock_symbol.upper()
+
+    # ✅ Deduct balance for purchase
+    # Expect frontend to send total_cost in trade (add to schema if needed)
+    if hasattr(trade, 'total_cost') and trade.total_cost is not None:
+        try:
+            withdraw_balances(user_id, float(trade.total_cost))
+        except ValueError as e:
+            raise HTTPException(status_code=400, detail=str(e))
 
     portfolio = load_portfolio()
     user_portfolio = portfolio.get(user_id, {})
@@ -31,6 +40,8 @@ async def buy(trade: TradeRequest):
         "stock_symbol": stock,
         "quantity": trade.quantity
     })
+
+    print(f"Received total_cost: {trade.total_cost} for user {user_id}")
 
     return {
         "message": f"✅ Bought {trade.quantity} shares of {stock} for user {user_id}"
