@@ -76,7 +76,11 @@ const AnimatedStockDisplay = () => {
             } catch (err) {
                 console.error('Error fetching stock data:', err);
                 if (isMounted) {
-                    setError(err.message || 'Error fetching stock data');
+                    if (err.response && err.response.status === 429) {
+                        setError('Rate limit exceeded. Please try again in a minute.');
+                    } else {
+                        setError(err.message || 'Error fetching stock data');
+                    }
                     setLoading(false);
                 }
             }

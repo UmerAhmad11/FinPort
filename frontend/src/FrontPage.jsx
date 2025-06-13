@@ -172,7 +172,7 @@ function FrontPage() {
                 </div>
             </nav>
             <div className="frontpage-dashboard">
-                <div className="todays-gain-card">
+                <div className="todays-gain-card" onClick={() => navigate('/market')}>
                     <AnimatedStockDisplay />
                 </div>
                 <div className="dashboard-main">

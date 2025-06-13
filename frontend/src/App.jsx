@@ -11,6 +11,7 @@ import Features from './Features';
 import WhyFinPort from './WhyFinPort';
 import Pricing from './Pricing';
 import Blog from './Blog';
+import Market from './Market';
 import './App.css';
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
         <Route path="/why" element={<WhyFinPort />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/market" element={<Market />} />
       </Routes>
     </BrowserRouter>
   );

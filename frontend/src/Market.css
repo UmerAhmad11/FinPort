@@ -1,0 +1,187 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/*=== Front Page ===*/
+
+.frontpage-bg-fintech {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+}
+.fintech-bg-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.market-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.companies-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-height: 70vh;
+  overflow-y: auto;
+  width: 100%;
+  background: rgba(255,255,255,0.07);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  transition: transform 0.4s cubic-bezier(.77,0,.18,1);
+  backdrop-filter: blur(8px) saturate(1.5);
+}
+
+.companies-list.swipe-right {
+  transform: translateX(100vw);
+  opacity: 0;
+}
+.companies-list.swipe-left {
+  transform: translateX(-100vw);
+  opacity: 0;
+}
+
+.company-card {
+  background: linear-gradient(135deg, rgba(37,99,235,0.85) 0%, rgba(96,165,250,0.85) 100%);
+  border-radius: 1rem;
+  box-shadow: 0 2px 16px 0 rgba(0, 212, 255, 0.12), 0 0 0 2px rgba(0,196,255,0.18);
+  border: 1.5px solid rgba(0,196,255,0.22);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: box-shadow 0.2s, border 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.company-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  pointer-events: none;
+  box-shadow: 0 0 24px 8px rgba(0,196,255,0.08), 0 0 0 2px rgba(0,196,255,0.10);
+  opacity: 0.7;
+}
+.company-card:hover {
+  box-shadow: 0 8px 32px 0 rgba(0, 212, 255, 0.22), 0 0 0 2.5px #00C4FF;
+  border: 1.5px solid #00C4FF;
+}
+.company-card h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #e0e7ff;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 8px rgba(0,196,255,0.12);
+}
+.company-card p {
+  font-size: 1rem;
+  color: #b6e0ff;
+  font-weight: 500;
+  text-shadow: 0 1px 4px rgba(0,196,255,0.10);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+.pagination button {
+  background: linear-gradient(90deg, #2563eb 0%, #60a5fa 100%);
+  color: #fff;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.pagination button:disabled {
+  background: #cbd5e1;
+  color: #64748b;
+  cursor: not-allowed;
+}
+.pagination span {
+  font-size: 1.1rem;
+  color: #e0e7ff;
+  font-weight: 500;
+}
+
+.market-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2.2rem;
+  position: relative;
+  z-index: 2;
+}
+.market-header h1 {
+  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  background: linear-gradient(90deg, #00C4FF 0%, #2563eb 60%, #39FF14 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  filter: drop-shadow(0 2px 16px #00c4ff44);
+  margin-bottom: 0.2rem;
+}
+.market-underline {
+  width: 90px;
+  height: 4px;
+  margin: 0 auto 0.7rem auto;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #00C4FF 0%, #39FF14 100%);
+  box-shadow: 0 0 16px 2px #00c4ff55, 0 0 8px 1px #39ff1444;
+  animation: underlineGlow 2.5s infinite alternate;
+}
+@keyframes underlineGlow {
+  0% { box-shadow: 0 0 16px 2px #00c4ff55, 0 0 8px 1px #39ff1444; }
+  100% { box-shadow: 0 0 32px 6px #00c4ff99, 0 0 16px 2px #39ff1499; }
+}
+.market-subtitle {
+  font-family: 'Inter', 'Montserrat', Arial, sans-serif;
+  font-size: 1.08rem;
+  color: #b6e0ff;
+  letter-spacing: 0.01em;
+  margin-top: 0.1rem;
+  margin-bottom: 0.2rem;
+  opacity: 0.85;
+  text-shadow: 0 2px 8px #00c4ff22;
+}
+
+.company-symbol {
+  display: inline-block;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #60a5fa;
+  background: rgba(0,196,255,0.10);
+  border-radius: 0.5rem;
+  padding: 0.13em 0.7em;
+  margin-bottom: 0.5rem;
+  margin-top: -0.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 1px 6px 0 #00c4ff22;
+}
