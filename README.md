@@ -41,6 +41,9 @@ Welcome to **FinPort**, a fully functional simulated stock trading web applicati
 ### Trade Tracker
 <img src="assets/screenshots/TradesTracker.png" alt="Trade Tracker" width="900" />
 
+### Live Stock Market
+<img src="assets/screenshots/Market.png" alt="Live StockMarket" width="900" />
+
 ---
 
 ## 📂 Project Structure
