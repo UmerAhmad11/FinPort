@@ -11,3 +11,4 @@ backend-java/api/application.properties
 backend-java/api/src/main/resources/application.properties
 .DS_Store
 .gitignore
+backend/Dockerfile
